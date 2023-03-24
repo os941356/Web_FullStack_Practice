@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HY聊天室</title>
+  </head>
+  <body>
+    <form>
+      <label for="user-input">輸入文字：</label>
+      <input type="text" id="user-input" />
+      <button type="submit" id="send-button">發送</button>
+    </form>
+
+    <script>
+      const form = document.querySelector("form");
+      const userInput = document.querySelector("#user-input");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault(); // 防止頁面重新載入
+        const inputText = userInput.value;
+        console.log("用戶輸入的文字：", inputText);
+        // 在此處使用JavaScript代碼來發送文字
+      });
+    </script>
+  </body>
+</html>
