@@ -3,7 +3,7 @@ const WebSocket = require('ws');
 
 const server = new WebSocket.Server({ port: 5501 });
 
-const clients = new Set();
+const clients = [];
 
 //-------------------------------------------
 server.on('listening', () => {
@@ -15,7 +15,7 @@ server.on('connection', (socket) => {
 
   console.log('新的WebSocket連線已建立');
   //-------將連入的client放到set中
-  clients.add(socket);
+  clients.push(socket);
   
   //-------每當有人加入就打印所有客戶端信息
   clients.forEach(function forEach(client){
