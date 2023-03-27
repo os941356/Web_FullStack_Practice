@@ -5,7 +5,7 @@ const server = new WebSocket.Server({ port: 5501 });
 
 const clients = [];
 
-//-------------------------------------------
+//-------------伺服器啟動時打印
 server.on('listening', () => {
   console.log('MyChat服務器已啟動')
 });
@@ -25,12 +25,15 @@ server.on('connection', (socket) => {
   });
 
 
-
   socket.on('message',(message) => {
       console.log(`接收到用戶的訊息： ${message}`)
-      client
+      server.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(`${message}`);
+        }
+        });
     });
-      
+
 
 
   socket.on('close',()=>{
@@ -38,14 +41,6 @@ server.on('connection', (socket) => {
   });
 
 
-  // socket.on('message', (message) => {
-  //   console.log(`接收到用戶的訊息： ${message}`);
-  //   server.clients.forEach((client) => {
-  //     if (client.readyState === WebSocket.OPEN) {
-  //       client.send(message);
-  //     }
-  //   });
-  // });
-
+ 
 
 });

@@ -25,12 +25,17 @@ server.on('connection', (socket) => {
         });
 
 
-
-        socket.on('message',(message) => {
+        socket.on('message', (message) => {
             console.log(`接收到用戶的訊息： ${message}`);
-            socket.send(`您傳送的訊息為：${message}`);
-          });
-            
+
+            server.clients.forEach((client) => {
+            if (client.readyState === WebSocket.OPEN) {
+                client.send(`${message}`);
+                console.log('發送'+message)
+            }
+            });
+        });
+
 
 
         socket.on('close',()=>{
@@ -38,14 +43,6 @@ server.on('connection', (socket) => {
         });
 
 
-  // socket.on('message', (message) => {
-  //   console.log(`接收到用戶的訊息： ${message}`);
-  //   server.clients.forEach((client) => {
-  //     if (client.readyState === WebSocket.OPEN) {
-  //       client.send(message);
-  //     }
-  //   });
-  // });
 
 
 });

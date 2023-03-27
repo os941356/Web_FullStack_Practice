@@ -19,7 +19,7 @@
   </head>
   <body>
     <div id="chat-window"></div>
-    <form>
+    <form id="chatform" onsubmit="return fasle">
       <label for="user-input">輸入文字：</label>
       <input type="text" id="user-input" />
       <button type="button" id="send-button">發送</button>
@@ -30,6 +30,7 @@
       const chatWindow = document.querySelector("#chat-window");
       const userInput = document.querySelector("#user-input");
       const sendButton = document.querySelector("#send-button");
+      const chattextform = document.querySelector("#chatform");
       const leaveButton = document.querySelector("#leave-chat");
       let urlParams = new URLSearchParams(window.location.search);
       let username = urlParams.get("username");
@@ -47,19 +48,44 @@
       //   console.log("連接已中斷");
       // });
 
+      chattextform.addEventListener("submit", (event) => {
+        event.preventDefault();
+        // ...防止按下enter刷新頁面
+      });
+
       sendButton.addEventListener("click", (event) => {
         event.preventDefault();
-        const inputText = userInput.value;
-        const newMessage = document.createElement("p");
-        newMessage.textContent = inputText;
-        chatWindow.appendChild(newMessage);
-        userInput.value = ""; // 清空輸入框
-        socket.send(`${username} : ${inputText}`);
+        if (userInput.value === "") {
+          window.alert("請輸入訊息!!");
+        } else {
+          const inputText = userInput.value;
+          const newMessage = document.createElement("p");
+          //-----------------------------------------------------------------
+          userInput.value = ""; // 清空輸入框
+          socket.send(`${username} : ${inputText}`); //朝server發送 名稱:說的內容
+        }
+      });
 
-        socket.addEventListener("message", (event) => {
-          const message = event.data;
-          console.log("收到服务器的消息：", message);
-        });
+      chattextform.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          if (userInput.value === "") {
+            window.alert("請輸入訊息!!");
+          } else {
+            const inputText = userInput.value;
+            const newMessage = document.createElement("p");
+            //-----------------------------------------------------------------
+            userInput.value = ""; // 清空輸入框
+            socket.send(`${username} : ${inputText}`); //朝server發送 名稱:說的內容
+          }
+        }
+      });
+
+      //--------------顯示server訊息----------------------------------------------------------
+      socket.addEventListener("message", (event) => {
+        const newMessage = document.createElement("p");
+        newMessage.textContent = event.data;
+        chatWindow.appendChild(newMessage);
       });
     </script>
   </body>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>聊天室</title>
+    <style>
+      #chat-window {
+        width: 400px;
+        height: 300px;
+        border: 1px solid black;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chat-window"></div>
+    <form>
+      <label for="user-input">輸入文字：</label>
+      <input type="text" id="user-input" />
+      <button type="submit" id="send-button">發送</button>
+    </form>
+
+    <script>
+      const chatWindow = document.querySelector("#chat-window");
+      const userInput = document.querySelector("#user-input");
+      const sendButton = document.querySelector("#send-button");
+      const socket = new WebSocket("ws://localhost:5501");
+
+      socket.addEventListener("open", (event) => {
+        console.log("WebSocket連線已建立");
+      });
+
+      socket.addEventListener("message", (event) => {
+        const newMessage = document.createElement("p");
+        newMessage.textContent = event.data;
+        chatWindow.appendChild(newMessage);
+      });
+
+      sendButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        const inputText = userInput.value;
+        socket.send(inputText);
+        userInput.value = ""; // 清空輸入框
+      });
+
+      sendButton.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          sendButton.click();
+          const inputText = userInput.value;
+          socket.send(inputText);
+          userInput.value = ""; // 清空輸入框
+        }
+      });
+    </script>
+  </body>
+</html>
