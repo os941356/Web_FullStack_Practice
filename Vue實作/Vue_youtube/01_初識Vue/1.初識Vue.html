@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="./js/vue.js"></script>
+    <script src="../js/vue.js"></script>
   </head>
   <body>
     <!-- 準備好一個容器 -->
     <div id="root">
-      <h1>hello. {{name}}</h1>
+      <h1>hello. {{name}},{{adress}}</h1>
     </div>
 
     <script type="text/javascript">
@@ -20,6 +20,7 @@
         el: "#root", //el=element 找到body內的el
         data: {
           name: "史畢德",
+          adress: "彰化",
         },
       });
     </script>

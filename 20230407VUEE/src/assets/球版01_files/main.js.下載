@@ -1,0 +1,122 @@
+$(document).ready(function()
+{
+	// input focus
+	$('input:not([type="submit"])').on('focus' , function()
+      {
+		$(this).parent('div').addClass('focus');
+      });
+      $('input:not([type="submit"])').on('blur' , function()
+      {
+		$(this).parent('div').removeClass('focus');
+      });
+
+      // select focus
+	$('select').on('focus' , function()
+      {
+		$(this).parent('div').addClass('focus');
+      });
+      $('select').on('blur' , function()
+      {
+		$(this).parent('div').removeClass('focus');
+      });
+
+	// input focus
+	$('textarea').on('focus' , function()
+      {
+		$(this).parent('div').addClass('focus');
+      });
+      $('textarea').on('blur' , function()
+      {
+		$(this).parent('div').removeClass('focus');
+      });
+
+	// 手機選單
+	$('.JqMenuBtn').on('click' , function()
+      {
+		$(this).toggleClass('active');
+		$('.JqMenuBox').toggleClass('active');
+		$('.JqContainer').addClass('OverflowYHidden');
+      });
+
+	// 手機選單-關閉
+	$('.JqMenuClose').on('click' , function()
+      {
+		$('.JqMenuBox').removeClass('active');
+		$('.JqMenuBtn').removeClass('active');
+		$('.JqContainer').removeClass('OverflowYHidden');
+      });
+
+	// 主題變化
+	$('.JqWebTheme').on('click' , function()
+      {
+		$('.JqWebTheme').removeClass('active');
+		$(this).addClass('active');
+		if($(this).attr('data-theme'))
+		{
+			$('.JqThemeLink').attr('href',$(this).attr('data-theme'));
+		}
+		else
+		{
+			$('.JqThemeLink').attr('href','');
+		}
+      });
+
+	// Pop彈窗顯示
+	$('.JqPopShow').on('click' , function()
+      {
+		$('.JqPopBox[data-pop="'+$(this).attr('data-pop')+'"]').addClass('active');
+
+		// 手機選單
+		$('.JqMenuBox').removeClass('active');
+		$('.JqMenuBtn').removeClass('active');
+
+		// Pop彈窗說明視窗
+		$('.JqPopQa').removeClass('active');
+      });
+
+	// Pop彈窗說明視窗
+	$('.JqPopQa').on('click' , function()
+      {
+		$(this).toggleClass('active');
+      });
+
+	// Pop彈窗關閉
+	$('.JqPopClose').on('click' , function()
+      {
+		$(this).parents('.JqPopBox').removeClass('active');
+		$('.JqContainer').removeClass('OverflowYHidden');
+      });
+	
+	// 彈窗按鈕 + class
+	$.each($('.JqJumpMsgBox'),function(index,item)
+	{
+		if($(item).find('.JqJumpMsgBtn').length > 1)
+		{
+			$(item).find('.JqJumpMsgBtn').addClass('noOne');
+		}
+	});
+
+	$(document).on('click','.JqClose',function()
+	{
+		if($(this).parents().hasClass('JqDetailTr'))
+		{
+			// 是否在表格裡的查看明細
+			$(this).parents('.JqDetailTr').removeClass('active');
+		}
+		else
+		{
+			$(this).parents('.JqJumpMsgBox').removeClass('active');
+		}
+		$('.JqHtml').css('overflow','unset');
+	});
+
+
+      // current time count
+	setInterval(() => {
+		oDate = new Date();
+		aOptions = { month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', second: 'numeric',hour12: false };
+		sDate = oDate.toLocaleString(undefined, aOptions).split('/').join('-');
+
+		$('.JqCurrentTime').text(sDate);
+	}, 1000);
+});

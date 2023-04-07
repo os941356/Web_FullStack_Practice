@@ -1,0 +1,224 @@
+/*
+	2021/05/10
+*/
+/*****     頁碼     *****/
+.PageBox
+{
+      padding: 30px 0 0 0;
+      width: 100%;
+}
+
+.PageContainer
+{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      flex-wrap: wrap;
+}
+
+.PageBtn , .PageNum
+{
+      display: block;
+      box-sizing: border-box;
+}
+
+.PageBtn:not(:last-child) , .PageNum:not(:last-child) , .PageRecordBox , 
+.PageSelectBox
+{
+      margin: 0 10px 0 0;
+}
+
+/*     首頁 上一頁 上十頁 下十頁 下一頁 最末頁     */
+.PageBtn
+{
+      background: #f1f1f1;
+      border: 1px solid cadetblue;
+      border-radius: 5px;
+      padding: 2px 8px;
+}
+
+.PageBtn.prev , .PageBtn.next
+{
+      padding: 7px 8px;
+}
+
+.PageBtn:hover
+{
+      background: cadetblue;
+}
+
+.PageBtnTxt
+{
+      color: cadetblue;
+      font-size: 16px;
+}
+
+.PageBtn:hover .PageBtnTxt
+{
+      color: white;
+}
+
+.PageBtn.prev .PageBtnTxt , .PageBtn.next .PageBtnTxt
+{
+      border-style: solid;
+      width: 0;
+	height: 0;
+	content: '';
+}
+
+.PageBtn.prev .PageBtnTxt
+{
+      border-color: transparent cadetblue transparent transparent;
+      border-width: 6px 8px 6px 0;      	
+}
+
+.PageBtn.next .PageBtnTxt
+{
+      border-color: transparent transparent transparent cadetblue;
+      border-width: 6px 0 6px 8px;      
+}
+
+.PageBtn.prev:hover .PageBtnTxt
+{
+      border-color: transparent white transparent transparent;
+}
+
+.PageBtn.next:hover .PageBtnTxt
+{
+      border-color: transparent transparent transparent white;
+}
+
+/*     頁碼     */
+.PageNum
+{
+      background: #f1f1f1;
+      border: 1px solid brown;
+      border-radius: 5px;
+      padding: 2px 8px;
+}
+
+.PageNum:hover, .PageNum.active
+{
+      background: brown;
+}
+
+.PageNumTxt
+{
+      color: brown;
+      font-size: 16px;
+}
+
+.PageNum:hover .PageNumTxt,
+.PageNum.active .PageNumTxt
+{
+      color: white;
+}
+
+/*     紀錄     */
+.PageRecordBox
+{
+      
+}
+
+.PageRecordNum
+{
+      color: black;
+      font-size: 16px;
+}
+
+.PageRecordTxt
+{
+      color: black;
+      font-size: 16px;
+}
+
+/*     下拉式     */
+.PageSelectBox
+{
+      width: 100px;
+}
+
+.PageSelect
+{
+      background: #ffe499;
+      border-radius: 5px;
+	box-sizing: border-box;
+      width: 100%;
+      position: relative;
+}
+
+.PageSelect select
+{
+      color: black;
+	min-height: 30px;
+	font-size: 16px;
+	display: block;
+	width: 100%;
+      padding: 5px;
+}
+
+.PageSelectDecro
+{
+      background: #E5C25B;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+      width: 30px;
+	height: 30px;
+	position: absolute;
+	top: calc(50%);
+	right: 0;
+	transform: translateY(-50%);
+	pointer-events: none;
+}
+
+.PageSelectDecro::after
+{
+      border-color: #342305 transparent transparent transparent;
+      border-width: 11px 7px 0 7px;      
+      border-style: solid;
+	width: 0;
+	height: 0;
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	pointer-events: none;
+}
+
+@media screen and (max-width:1179px)
+{
+      .PageBtn
+      {
+            border-radius: 2px;
+            padding: 1px 4px;
+      }
+
+      .PageBtnTxt
+      {
+            font-size: 12px;
+      }
+
+      .PageBtn.prev, .PageBtn.next
+      {
+            padding: 2px 4px;
+      }
+
+      .PageNum
+      {
+            border-radius: 2px;
+            padding: 1px 4px;
+      }
+
+      .PageBtn:not(:last-child), .PageNum:not(:last-child), .PageRecordBox, .PageSelectBox
+      {
+            margin: 0 5px 0 0;
+      }
+
+      .PageNumTxt
+      {
+            font-size: 12px;
+      }
+}

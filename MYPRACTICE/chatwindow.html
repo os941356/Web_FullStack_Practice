@@ -35,7 +35,7 @@
       let urlParams = new URLSearchParams(window.location.search);
       let username = urlParams.get("username");
       //使用WebSocker建立連線
-      const socket = new WebSocket("ws://localhost:5501");
+      const socket = new WebSocket("ws://127.0.0.1:5501");
 
       socket.addEventListener("open", (event) => {
         console.log("連線已建立!");
