@@ -32,9 +32,9 @@
       </ul>
     </div>
     <div>
-      <button><img src="" alt="" /></button>
-      <button><img src="" alt="" /></button>
-      <button><img src="" alt="" /></button>
+      <button><img src="../assets/ICON/轉帳.png" alt="" class="h-5" /></button>
+      <button><img src="../assets/ICON/客服.png" alt="" class="h-5" /></button>
+      <button><img src="../assets/ICON/公告.png" alt="" class="h-5" /></button>
     </div>
   </nav>
 </template>

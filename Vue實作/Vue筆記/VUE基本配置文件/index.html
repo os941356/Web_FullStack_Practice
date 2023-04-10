@@ -9,7 +9,16 @@
     <title>Vue應用</title>
   </head>
   <body>
-    <div id="'app"></div>
+    <div id="app">
+      <div class="input-field">
+        <label for="username">用戶名</label>
+        <input type="text" id="username" @input="handleInput" />
+      </div>
+      <div class="result">
+        <p>你輸入的用戶名是:{{username}}</p>
+      </div>
+    </div>
+
     <script src="index.js"></script>
   </body>
 </html>

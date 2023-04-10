@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+
 import BallGameNav from "./components/BallGameNav.vue";
 import BallGameNavTop from "./components/BallGameNavTop.vue";
 import BallGameNavBut from "./components/BallGameNavBut.vue";
