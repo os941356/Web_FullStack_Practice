@@ -1,14 +1,19 @@
 const app = Vue.createApp({
-    data(){
-        return {
-            username:"",
-        };
-    },
-    methods: {
-        handleInput(e){
-                //console.log(e.target.value);
-                this.username = e.target.value;
+	data(){
+		return{
+			msg: "你好",
+			name: "張三",
+		};
+	},
+    computed:{
+        greeting(){
+            return `${this.msg} ${this.name}`;
         },
-    }, 
+    },
+    methods:{
+        changeName(name){
+            this.name = name;
+        },
+    },
 });
-app.mount("#app");
+const vm = app.mount("#app");
