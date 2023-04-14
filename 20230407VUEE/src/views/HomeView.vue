@@ -5,9 +5,9 @@ import MainContent from "@/components/MainContent.vue";
 </script>
 
 <template>
-  <main class="grid grid-cols-12">
-    <SideBar1 class="col-span-2" />
-    <MainContent class="col-span-8" />
-    <SideBar2 class="col-span-2" />
+  <main class="flex">
+    <SideBar1 class="w-[13%]" />
+    <MainContent class="w-[72%]" />
+    <SideBar2 class="w-[15%]" />
   </main>
 </template>
