@@ -1,9 +1,27 @@
 <template>
   <div>
     <div class="這是足球區塊">
-      <div class="bg-[#29a75e] h-8">
-        <ul class="flex h-full text-[5px]">
-          <li class="text-white w-[35%] flex items-center">足球</li>
+      <div class="bg-[#006837] h-10">
+        <ul class="flex h-full text-sm">
+          <div class="text-white w-[35%] flex items-center">
+            <div class="mx-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+            <div>足球</div>
+          </div>
           <li
             class="text-white w-[10%] h-full flex items-center justify-center"
           >
@@ -40,33 +58,56 @@
         </ul>
       </div>
       <!--  -->
-      <div class="bg-slate-200 h-8">亞足冠軍聯賽</div>
+      <div class="bg-slate-200 h-10 flex items-center">
+        <div>
+          <svg
+            class="mx-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+        <div>亞足冠軍聯賽</div>
+      </div>
       <!--  -->
       <div class="flex h-24">
         <div
-          class="flex justify-center items-center bg-slate-50 h-full w-[35%] border border-solid border-slate-400"
+          class="flex justify-between items-center h-full w-[35%] border-b border-r"
         >
-          <ul class="flex flex-col items-center">
-            <li>大阪飛腳(中)</li>
-            <li>淡濱尼流浪隊</li>
-            <li>和局</li>
-          </ul>
+          <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+            <div>07-07</div>
+            <div>18:00</div>
+          </div>
+          <div class="w-[70%] flex justify-start">
+            <ul class="flex flex-col">
+              <li>大阪飛腳<span class="text-red-500">(中)</span></li>
+              <li>淡濱尼流浪隊</li>
+              <li>和局</li>
+            </ul>
+          </div>
+          <div class="w-[10%] flex flex-col justify-end">
+            <img src="../assets/ICON/滾球數據-1.png" alt="" class="w-8 ml-2" />
+            <img src="../assets/ICON/未收藏.png" alt="" class="w-8 ml-2" />
+          </div>
         </div>
 
         <template v-for="index in 6" :key="index">
-          <div
-            class="border border-solid border-slate-400 bg-white h-full w-[10%]"
-          >
+          <div class="border bg-white h-full w-[10%]">
             <table class="h-full w-full">
               <tr class="">
-                <td class="border-b border-solid border-slate-400 text-center">
-                  大 0.82
-                </td>
+                <td class="border-b text-center">大 0.82</td>
               </tr>
               <tr>
-                <td class="border-b border-solid border-slate-400 text-center">
-                  小 0.82
-                </td>
+                <td class="border-b text-center">小 0.82</td>
               </tr>
               <tr>
                 <td class="text-center">1111</td>
@@ -74,19 +115,44 @@
             </table>
           </div>
         </template>
-
         <div
-          class="border border-solid border-slate-400 bg-white h-full w-[5%]"
+          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
         >
-          <img src="../assets/ICON/開放滾球及現場轉播.png" alt="" />
-          <img src="../assets/ICON/賽事數據.png" alt="" />
+          <div class="flex w-full justify-around">
+            <img
+              class="h-7"
+              src="../assets/ICON/開放滾球及現場轉播.png"
+              alt=""
+            />
+            <img class="h-7" src="../assets/ICON/賽事數據.png" alt="" />
+          </div>
+          <div>8 >></div>
         </div>
       </div>
     </div>
     <div class="這是藍球區塊">
-      <div class="bg-[#764c24] h-8">
-        <ul class="flex h-full text-[5px]">
-          <li class="text-white w-[35%] flex items-center">籃球</li>
+      <div class="bg-[#764c24] h-10">
+        <ul class="flex h-full text-sm">
+          <div class="text-white w-[35%] flex items-center">
+            <div class="flex">
+              <svg
+                class="mx-2"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+              <div>籃球</div>
+            </div>
+          </div>
           <li
             class="text-white w-[10%] h-full flex items-center justify-center"
           >
@@ -123,33 +189,56 @@
         </ul>
       </div>
       <!--  -->
-      <div class="bg-slate-200 h-8">亞足冠軍聯賽</div>
+      <div class="bg-slate-200 h-10 flex items-center">
+        <div>
+          <svg
+            class="mx-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+        <div>亞足冠軍聯賽</div>
+      </div>
       <!--  -->
       <div class="flex h-24">
         <div
-          class="flex justify-center items-center bg-slate-50 h-full w-[35%] border border-solid border-slate-400"
+          class="flex justify-between items-center h-full w-[35%] border-b border-r"
         >
-          <ul class="flex flex-col items-center">
-            <li>大阪飛腳(中)</li>
-            <li>淡濱尼流浪隊</li>
-            <li>和局</li>
-          </ul>
+          <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+            <div>07-07</div>
+            <div>18:00</div>
+          </div>
+          <div class="w-[70%] flex justify-start">
+            <ul class="flex flex-col">
+              <li>大阪飛腳<span class="text-red-500">(中)</span></li>
+              <li>淡濱尼流浪隊</li>
+              <li>和局</li>
+            </ul>
+          </div>
+          <div class="w-[10%] flex flex-col justify-end">
+            <img src="../assets/ICON/滾球數據-1.png" alt="" class="w-8 ml-2" />
+            <img src="../assets/ICON/未收藏.png" alt="" class="w-8 ml-2" />
+          </div>
         </div>
 
         <template v-for="index in 6" :key="index">
-          <div
-            class="border border-solid border-slate-400 bg-white h-full w-[10%]"
-          >
+          <div class="border bg-white h-full w-[10%]">
             <table class="h-full w-full">
               <tr class="">
-                <td class="border-b border-solid border-slate-400 text-center">
-                  大 0.82
-                </td>
+                <td class="border-b text-center">大 0.82</td>
               </tr>
               <tr>
-                <td class="border-b border-solid border-slate-400 text-center">
-                  小 0.82
-                </td>
+                <td class="border-b text-center">小 0.82</td>
               </tr>
               <tr>
                 <td class="text-center">1111</td>
@@ -157,19 +246,44 @@
             </table>
           </div>
         </template>
-
         <div
-          class="border border-solid border-slate-400 bg-white h-full w-[5%]"
+          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
         >
-          <img src="../assets/ICON/開放滾球及現場轉播.png" alt="" />
-          <img src="../assets/ICON/賽事數據.png" alt="" />
+          <div class="flex w-full justify-around">
+            <img
+              class="h-7"
+              src="../assets/ICON/開放滾球及現場轉播.png"
+              alt=""
+            />
+            <img class="h-7" src="../assets/ICON/賽事數據.png" alt="" />
+          </div>
+          <div>8 >></div>
         </div>
       </div>
     </div>
     <div class="這是棒球區塊">
-      <div class="bg-[#464646] h-8">
-        <ul class="flex h-full text-[5px]">
-          <li class="text-white w-[35%] flex items-center">棒球</li>
+      <div class="bg-[#464646] h-10">
+        <ul class="flex h-full text-sm">
+          <div class="text-white w-[35%] flex items-center">
+            <div class="flex">
+              <svg
+                class="mx-2"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+              <div>棒球</div>
+            </div>
+          </div>
           <li
             class="text-white w-[10%] h-full flex items-center justify-center"
           >
@@ -206,33 +320,56 @@
         </ul>
       </div>
       <!--  -->
-      <div class="bg-slate-200 h-8">亞足冠軍聯賽</div>
+      <div class="bg-slate-200 h-10 flex items-center">
+        <div>
+          <svg
+            class="mx-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+        <div>亞足冠軍聯賽</div>
+      </div>
       <!--  -->
       <div class="flex h-24">
         <div
-          class="flex justify-center items-center bg-slate-50 h-full w-[35%] border border-solid border-slate-400"
+          class="flex justify-between items-center h-full w-[35%] border-b border-r"
         >
-          <ul class="flex flex-col items-center">
-            <li>大阪飛腳(中)</li>
-            <li>淡濱尼流浪隊</li>
-            <li>和局</li>
-          </ul>
+          <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+            <div>07-07</div>
+            <div>18:00</div>
+          </div>
+          <div class="w-[70%] flex justify-start">
+            <ul class="flex flex-col">
+              <li>大阪飛腳<span class="text-red-500">(中)</span></li>
+              <li>淡濱尼流浪隊</li>
+              <li>和局</li>
+            </ul>
+          </div>
+          <div class="w-[10%] flex flex-col justify-end">
+            <img src="../assets/ICON/滾球數據-1.png" alt="" class="w-8 ml-2" />
+            <img src="../assets/ICON/未收藏.png" alt="" class="w-8 ml-2" />
+          </div>
         </div>
 
         <template v-for="index in 6" :key="index">
-          <div
-            class="border border-solid border-slate-400 bg-white h-full w-[10%]"
-          >
+          <div class="border bg-white h-full w-[10%]">
             <table class="h-full w-full">
               <tr class="">
-                <td class="border-b border-solid border-slate-400 text-center">
-                  大 0.82
-                </td>
+                <td class="border-b text-center">大 0.82</td>
               </tr>
               <tr>
-                <td class="border-b border-solid border-slate-400 text-center">
-                  小 0.82
-                </td>
+                <td class="border-b text-center">小 0.82</td>
               </tr>
               <tr>
                 <td class="text-center">1111</td>
@@ -240,19 +377,46 @@
             </table>
           </div>
         </template>
-
         <div
-          class="border border-solid border-slate-400 bg-white h-full w-[5%]"
+          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
         >
-          <img src="../assets/ICON/開放滾球及現場轉播.png" alt="" />
-          <img src="../assets/ICON/賽事數據.png" alt="" />
+          <div class="flex w-full justify-around">
+            <img
+              class="h-7"
+              src="../assets/ICON/開放滾球及現場轉播.png"
+              alt=""
+            />
+            <img class="h-7" src="../assets/ICON/賽事數據.png" alt="" />
+          </div>
+          <div>8 >></div>
         </div>
       </div>
     </div>
     <div class="這是網球區塊">
-      <div class="bg-[#464646] h-8">
-        <ul class="flex h-full text-[5px]">
-          <li class="text-white w-[35%] flex items-center">棒球</li>
+      <div class="bg-[#29a75e] h-10">
+        <ul class="flex h-full text-sm">
+          <div class="text-white w-[35%] flex items-center">
+            <div class="text-white w-[35%] flex items-center">
+              <div class="flex">
+                <svg
+                  class="mx-2"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+                <div>網球</div>
+              </div>
+            </div>
+          </div>
           <li
             class="text-white w-[10%] h-full flex items-center justify-center"
           >
@@ -289,33 +453,56 @@
         </ul>
       </div>
       <!--  -->
-      <div class="bg-slate-200 h-8">亞足冠軍聯賽</div>
+      <div class="bg-slate-200 h-10 flex items-center">
+        <div>
+          <svg
+            class="mx-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+        <div>亞足冠軍聯賽</div>
+      </div>
       <!--  -->
       <div class="flex h-24">
         <div
-          class="flex justify-center items-center bg-slate-50 h-full w-[35%] border border-solid border-slate-400"
+          class="flex justify-between items-center h-full w-[35%] border-b border-r"
         >
-          <ul class="flex flex-col items-center">
-            <li>大阪飛腳(中)</li>
-            <li>淡濱尼流浪隊</li>
-            <li>和局</li>
-          </ul>
+          <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+            <div>07-07</div>
+            <div>18:00</div>
+          </div>
+          <div class="w-[70%] flex justify-start">
+            <ul class="flex flex-col">
+              <li>大阪飛腳<span class="text-red-500">(中)</span></li>
+              <li>淡濱尼流浪隊</li>
+              <li>和局</li>
+            </ul>
+          </div>
+          <div class="w-[10%] flex flex-col justify-end">
+            <img src="../assets/ICON/滾球數據-1.png" alt="" class="w-8 ml-2" />
+            <img src="../assets/ICON/未收藏.png" alt="" class="w-8 ml-2" />
+          </div>
         </div>
 
         <template v-for="index in 6" :key="index">
-          <div
-            class="border border-solid border-slate-400 bg-white h-full w-[10%]"
-          >
+          <div class="border bg-white h-full w-[10%]">
             <table class="h-full w-full">
               <tr class="">
-                <td class="border-b border-solid border-slate-400 text-center">
-                  大 0.82
-                </td>
+                <td class="border-b text-center">大 0.82</td>
               </tr>
               <tr>
-                <td class="border-b border-solid border-slate-400 text-center">
-                  小 0.82
-                </td>
+                <td class="border-b text-center">小 0.82</td>
               </tr>
               <tr>
                 <td class="text-center">1111</td>
@@ -325,17 +512,48 @@
         </template>
 
         <div
-          class="border border-solid border-slate-400 bg-white h-full w-[5%]"
+          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
         >
-          <img src="../assets/ICON/開放滾球及現場轉播.png" alt="" />
-          <img src="../assets/ICON/賽事數據.png" alt="" />
+          <div class="flex w-full justify-around">
+            <img
+              class="h-7"
+              src="../assets/ICON/開放滾球及現場轉播.png"
+              alt=""
+            />
+            <img class="h-7" src="../assets/ICON/賽事數據.png" alt="" />
+          </div>
+          <div>8 >></div>
         </div>
       </div>
     </div>
     <div class="這是電子競技區塊">
-      <div class="bg-[#7b49a0] h-8">
-        <ul class="flex h-full text-[5px]">
-          <li class="text-white w-[35%] flex items-center">棒球</li>
+      <div class="bg-[#7b49a0] h-10">
+        <ul class="flex h-full text-sm">
+          <div class="text-white w-[35%] flex items-center">
+            <div class="text-white w-[35%] flex items-center">
+              <div class="text-white w-[35%] flex items-center">
+                <div class="flex">
+                  <svg
+                    class="mx-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                  <div class="w-16">電子競技</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <li
             class="text-white w-[10%] h-full flex items-center justify-center"
           >
@@ -372,33 +590,56 @@
         </ul>
       </div>
       <!--  -->
-      <div class="bg-slate-200 h-8">亞足冠軍聯賽</div>
+      <div class="bg-slate-200 h-10 flex items-center">
+        <div>
+          <svg
+            class="mx-2"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+        <div>亞足冠軍聯賽</div>
+      </div>
       <!--  -->
       <div class="flex h-24">
         <div
-          class="flex justify-center items-center bg-slate-50 h-full w-[35%] border border-solid border-slate-400"
+          class="flex justify-between items-center h-full w-[35%] border-b border-r"
         >
-          <ul class="flex flex-col items-center">
-            <li>大阪飛腳(中)</li>
-            <li>淡濱尼流浪隊</li>
-            <li>和局</li>
-          </ul>
+          <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+            <div>07-07</div>
+            <div>18:00</div>
+          </div>
+          <div class="w-[70%] flex justify-start">
+            <ul class="flex flex-col">
+              <li>大阪飛腳<span class="text-red-500">(中)</span></li>
+              <li>淡濱尼流浪隊</li>
+              <li>和局</li>
+            </ul>
+          </div>
+          <div class="w-[10%] flex flex-col justify-end">
+            <img src="../assets/ICON/滾球數據-1.png" alt="" class="w-8 ml-2" />
+            <img src="../assets/ICON/未收藏.png" alt="" class="w-8 ml-2" />
+          </div>
         </div>
 
         <template v-for="index in 6" :key="index">
-          <div
-            class="border border-solid border-slate-400 bg-white h-full w-[10%]"
-          >
+          <div class="border bg-white h-full w-[10%]">
             <table class="h-full w-full">
               <tr class="">
-                <td class="border-b border-solid border-slate-400 text-center">
-                  大 0.82
-                </td>
+                <td class="border-b text-center">大 0.82</td>
               </tr>
               <tr>
-                <td class="border-b border-solid border-slate-400 text-center">
-                  小 0.82
-                </td>
+                <td class="border-b text-center">小 0.82</td>
               </tr>
               <tr>
                 <td class="text-center">1111</td>
@@ -406,12 +647,18 @@
             </table>
           </div>
         </template>
-
         <div
-          class="border border-solid border-slate-400 bg-white h-full w-[5%]"
+          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
         >
-          <img src="../assets/ICON/開放滾球及現場轉播.png" alt="" />
-          <img src="../assets/ICON/賽事數據.png" alt="" />
+          <div class="flex w-full justify-around">
+            <img
+              class="h-7"
+              src="../assets/ICON/開放滾球及現場轉播.png"
+              alt=""
+            />
+            <img class="h-7" src="../assets/ICON/賽事數據.png" alt="" />
+          </div>
+          <div>8 >></div>
         </div>
       </div>
     </div>

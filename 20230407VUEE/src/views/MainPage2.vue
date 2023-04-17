@@ -7,7 +7,9 @@ import MainContent2 from "@/components/MainContent2.vue";
 <template>
   <main class="flex">
     <SideBar1 class="w-[13%]" />
+    <div class="w-[1px] border"></div>
     <MainContent2 class="w-[77%]" />
+    <div class="w-[1px] border"></div>
     <SideBar2 class="w-[15%]" />
   </main>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <div class="border-r-2">
-    <div class="bg-[#29a75e] h-8">
+  <div>
+    <div class="bg-[#29a75e] h-10">
       <ul class="h-full flex justify-around items-center text-white">
         <li>今日</li>
         <li>滾球</li>
@@ -12,7 +12,7 @@
       <div>
         <ul class="h-full">
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center">
               <img
@@ -22,10 +22,14 @@
               />
               收藏夾
             </div>
-            <div class="h-full w-12 text-green-600">2</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              2
+            </div>
           </button>
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center">
               <img
@@ -35,10 +39,14 @@
               />
               即時賽事
             </div>
-            <div class="h-full w-12 text-green-600">2</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              31
+            </div>
           </button>
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center">
               <img
@@ -48,10 +56,14 @@
               />
               轉播賽事
             </div>
-            <div class="h-full w-12 text-green-600">2</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              2
+            </div>
           </button>
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center">
               <img
@@ -61,12 +73,16 @@
               />
               歐洲盃
             </div>
-            <div class="h-full w-12 text-green-600">5</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              5
+            </div>
           </button>
           <!--  -->
           <li>
             <button
-              class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+              class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
               @click="openmenu"
             >
               <div class="flex h-full items-center">
@@ -77,48 +93,82 @@
                 />
                 足球
               </div>
-              <div class="h-full w-12 text-green-600">5</div>
+              <div
+                class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+              >
+                113
+              </div>
             </button>
             <div
-              class="w-full h-10 text-center border border-b bg-[#efefef]"
+              class="w-full h-10 border border-b bg-[#efefef] flex justify-between items-center"
               :class="bool ? '' : 'hidden'"
             >
-              全場/上半
+              <div class="ml-14">全場/上半</div>
+              <div
+                class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+              >
+                113
+              </div>
             </div>
             <div
-              class="w-full h-10 text-center border border-b bg-[#efefef]"
+              class="w-full h-10 border border-b bg-[#efefef] flex justify-between items-center"
               :class="bool ? '' : 'hidden'"
             >
-              角球
+              <div class="ml-14">角球</div>
+              <div
+                class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+              >
+                113
+              </div>
             </div>
             <div
-              class="w-full h-8 text-center border border-b bg-[#efefef]"
+              class="w-full h-10 border border-b bg-[#efefef] flex justify-between items-center"
               :class="bool ? '' : 'hidden'"
             >
-              特定15分鐘
+              <div class="ml-14">特定15分鐘</div>
+              <div
+                class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+              >
+                2
+              </div>
             </div>
             <div
-              class="w-full h-8 text-center border border-b bg-[#efefef]"
+              class="w-full h-10 border border-b bg-[#efefef] flex justify-between items-center"
               :class="bool ? '' : 'hidden'"
             >
-              波膽
+              <div class="ml-14">波膽</div>
+              <div
+                class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+              >
+                61
+              </div>
             </div>
             <div
-              class="w-full h-8 text-center border border-b bg-[#efefef]"
+              class="w-full h-10 border border-b bg-[#efefef] flex justify-between items-center"
               :class="bool ? '' : 'hidden'"
             >
-              入球數
+              <div class="ml-14">入球數</div>
+              <div
+                class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+              >
+                61
+              </div>
             </div>
             <div
-              class="w-full h-8 text-center bg-[#efefef]"
+              class="w-full h-10 border border-b bg-[#efefef] flex justify-between items-center"
               :class="bool ? '' : 'hidden'"
             >
-              半全場
+              <div class="ml-14">半全場</div>
+              <div
+                class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+              >
+                61
+              </div>
             </div>
           </li>
           <!--  -->
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center">
               <img
@@ -128,10 +178,14 @@
               />
               籃球
             </div>
-            <div class="h-full w-12 text-green-600">2</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              2
+            </div>
           </button>
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center">
               <img
@@ -141,10 +195,14 @@
               />
               棒球
             </div>
-            <div class="h-full w-12 text-green-600">2</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              2
+            </div>
           </button>
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center">
               <img
@@ -154,10 +212,14 @@
               />
               網球
             </div>
-            <div class="h-full w-12 text-green-600">61</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              61
+            </div>
           </button>
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center">
               <img
@@ -167,10 +229,14 @@
               />
               冰球
             </div>
-            <div class="flex items-center h-full w-8 text-green-600">2</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              2
+            </div>
           </button>
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center">
               <img
@@ -180,10 +246,14 @@
               />
               排球
             </div>
-            <div class="flex items-center h-full w-8 text-green-600">2</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              2
+            </div>
           </button>
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center">
               <img
@@ -193,10 +263,14 @@
               />
               乒乓球
             </div>
-            <div class="flex items-center h-full w-8 text-green-600">8</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              8
+            </div>
           </button>
           <button
-            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border border-b"
+            class="w-full h-10 hover:bg-gray-50 flex items-center justify-between border-b"
           >
             <div class="flex h-full items-center text-center">
               <img
@@ -206,7 +280,11 @@
               />
               電子競技
             </div>
-            <div class="flex items-center h-full w-8 text-green-600">1</div>
+            <div
+              class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+            >
+              1
+            </div>
           </button>
         </ul>
       </div>
