@@ -66,7 +66,7 @@
           <div
             class="flex justify-between items-center h-full w-[35%] border-b border-r"
           >
-            <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+            <div class="w-[8%] flex flex-col ml-4 text-gray-400">
               <div>07-07</div>
               <div>18:00</div>
             </div>
@@ -89,69 +89,72 @@
 
           <template v-for="index in 2" :key="index">
             <div class="border-r bg-white h-full w-[10%]">
-              <table class="h-full w-[10%]">
-                <tr class="border-b w-full">
-                  <td class="h-full w-full flex justify-between items-center">
-                    <div class="ml-4 flex justify-start">0</div>
-                    <div class="mx-8 text-blue-500 flex justify-end">0.82</div>
+              <table class="h-full w-full">
+                <tr class="border-b">
+                  <td class="flex justify-between items-center h-full">
+                    <div class="mx-4">0</div>
+                    <div class="mx-4 text-blue-500">0.82</div>
                   </td>
                 </tr>
                 <tr class="border-b">
-                  <td class="h-full flex justify-between">
-                    <div class="mx-8 flex justify-start"></div>
-                    <div class="mx-8 text-blue-500 flex justify-end">0.82</div>
+                  <td class="flex justify-between items-center h-full">
+                    <div></div>
+                    <div class="mx-4 text-blue-500">0.82</div>
                   </td>
                 </tr>
-                <tr class="border-b">
-                  <td class="h-full text-center flex justify-center">_</td>
+                <tr class="border-b h-8">
+                  <td class="flex justify-between items-center h-full"></td>
                 </tr>
               </table>
             </div>
             <div class="bg-white h-full w-[10%] border-r">
               <table class="h-full w-full">
                 <tr class="border-b">
-                  <td class="h-full flex justify-between items-center">
-                    <div class="ml-4 flex justify-start">0</div>
-                    <div class="mx-8 flex justify-end">
-                      <span class="text-red-500"></span>
-                      <span class="text-blue-500">0.82</span>
+                  <td class="flex justify-between items-center h-full">
+                    <div class="mx-4">0</div>
+                    <div class="mx-4">
+                      <span class="text-red-500 mr-1">大</span
+                      ><span class="text-blue-500">0.82</span>
                     </div>
                   </td>
                 </tr>
                 <tr class="border-b">
-                  <td class="h-full flex justify-between">
-                    <div class="mx-8 flex justify-start"></div>
-                    <div class="mx-8 flex justify-end">0.82</div>
+                  <td class="flex justify-between items-center h-full">
+                    <div></div>
+                    <div class="mx-4">
+                      <span class="text-red-500 mr-1">小</span
+                      ><span class="text-blue-500">0.82</span>
+                    </div>
                   </td>
                 </tr>
-                <tr class="border-b">
-                  <td class="h-full text-center flex justify-center">_</td>
+                <tr class="border-b h-8">
+                  <td class="flex justify-between items-center h-full"></td>
                 </tr>
               </table>
             </div>
             <div class="bg-white h-full w-[10%] border-r">
-              <table class="h-full w-full">
+              <table class="h-full w-full" style="width: 100%">
                 <tr class="border-b">
-                  <td class="h-full flex justify-between items-center">
-                    <div class="ml-4 flex justify-start">0</div>
-                    <div class="mx-8 text-blue-500 flex justify-end">0.82</div>
+                  <td class="flex justify-between items-center h-full">
+                    <div class="mx-4">0</div>
+                    <div class="mx-4 text-blue-500">0.82</div>
                   </td>
                 </tr>
                 <tr class="border-b">
-                  <td class="h-full flex justify-between">
-                    <div class="mx-8 flex justify-start"></div>
-                    <div class="mx-8 text-blue-500 flex justify-end">0.82</div>
+                  <td class="flex justify-between items-center h-full">
+                    <div></div>
+                    <div class="mx-4 text-blue-500">0.82</div>
                   </td>
                 </tr>
-                <tr class="border-b">
-                  <td class="h-full text-center flex justify-center">_</td>
+                <tr class="border-b h-8">
+                  <td class="flex justify-between items-center h-full"></td>
                 </tr>
               </table>
             </div>
           </template>
 
           <div
-            class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
+            class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center gap-[1em]"
           >
             <div class="flex w-full justify-around">
               <img

@@ -83,7 +83,7 @@
         <div
           class="flex justify-between items-center h-full w-[35%] border-b border-r"
         >
-          <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+          <div class="w-[8%] flex flex-col ml-4 text-gray-400">
             <div>07-07</div>
             <div>18:00</div>
           </div>
@@ -104,19 +104,30 @@
           <div class="border bg-white h-full w-[10%]">
             <table class="h-full w-full">
               <tr class="">
-                <td class="border-b text-center">大 0.82</td>
+                <td
+                  class="h-8 border-b text-center flex justify-between items-center"
+                >
+                  <div class="ml-8">0</div>
+                  <div class="mr-8 text-blue-500">0.82</div>
+                </td>
               </tr>
-              <tr>
-                <td class="border-b text-center">小 0.82</td>
+              <tr></tr>
+              <tr class="">
+                <td
+                  class="h-8 border-b text-center flex justify-between items-center"
+                >
+                  <div class="ml-8"></div>
+                  <div class="mr-8 text-blue-500">0.82</div>
+                </td>
               </tr>
-              <tr>
-                <td class="text-center">1111</td>
+              <tr class="">
+                <td class="h-8 border-b text-center flex justify-between"></td>
               </tr>
             </table>
           </div>
         </template>
         <div
-          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
+          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center gap-[1em]"
         >
           <div class="flex w-full justify-around">
             <img
@@ -214,7 +225,7 @@
         <div
           class="flex justify-between items-center h-full w-[35%] border-b border-r"
         >
-          <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+          <div class="w-[8%] flex flex-col ml-4 text-gray-400">
             <div>07-07</div>
             <div>18:00</div>
           </div>
@@ -235,19 +246,30 @@
           <div class="border bg-white h-full w-[10%]">
             <table class="h-full w-full">
               <tr class="">
-                <td class="border-b text-center">大 0.82</td>
+                <td
+                  class="h-8 border-b text-center flex justify-between items-center"
+                >
+                  <div class="ml-8">0</div>
+                  <div class="mr-8 text-blue-500">0.82</div>
+                </td>
               </tr>
-              <tr>
-                <td class="border-b text-center">小 0.82</td>
+              <tr></tr>
+              <tr class="">
+                <td
+                  class="h-8 border-b text-center flex justify-between items-center"
+                >
+                  <div class="ml-8"></div>
+                  <div class="mr-8 text-blue-500">0.82</div>
+                </td>
               </tr>
-              <tr>
-                <td class="text-center">1111</td>
+              <tr class="">
+                <td class="h-8 border-b text-center flex justify-between"></td>
               </tr>
             </table>
           </div>
         </template>
         <div
-          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
+          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center gap-[1em]"
         >
           <div class="flex w-full justify-around">
             <img
@@ -345,7 +367,7 @@
         <div
           class="flex justify-between items-center h-full w-[35%] border-b border-r"
         >
-          <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+          <div class="w-[8%] flex flex-col ml-4 text-gray-400">
             <div>07-07</div>
             <div>18:00</div>
           </div>
@@ -366,19 +388,30 @@
           <div class="border bg-white h-full w-[10%]">
             <table class="h-full w-full">
               <tr class="">
-                <td class="border-b text-center">大 0.82</td>
+                <td
+                  class="h-8 border-b text-center flex justify-between items-center"
+                >
+                  <div class="ml-8">0</div>
+                  <div class="mr-8 text-blue-500">0.82</div>
+                </td>
               </tr>
-              <tr>
-                <td class="border-b text-center">小 0.82</td>
+              <tr></tr>
+              <tr class="">
+                <td
+                  class="h-8 border-b text-center flex justify-between items-center"
+                >
+                  <div class="ml-8"></div>
+                  <div class="mr-8 text-blue-500">0.82</div>
+                </td>
               </tr>
-              <tr>
-                <td class="text-center">1111</td>
+              <tr class="">
+                <td class="h-8 border-b text-center flex justify-between"></td>
               </tr>
             </table>
           </div>
         </template>
         <div
-          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
+          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center gap-[1em]"
         >
           <div class="flex w-full justify-around">
             <img
@@ -478,7 +511,7 @@
         <div
           class="flex justify-between items-center h-full w-[35%] border-b border-r"
         >
-          <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+          <div class="w-[8%] flex flex-col ml-4 text-gray-400">
             <div>07-07</div>
             <div>18:00</div>
           </div>
@@ -499,20 +532,31 @@
           <div class="border bg-white h-full w-[10%]">
             <table class="h-full w-full">
               <tr class="">
-                <td class="border-b text-center">大 0.82</td>
+                <td
+                  class="h-8 border-b text-center flex justify-between items-center"
+                >
+                  <div class="ml-8">0</div>
+                  <div class="mr-8 text-blue-500">0.82</div>
+                </td>
               </tr>
-              <tr>
-                <td class="border-b text-center">小 0.82</td>
+              <tr></tr>
+              <tr class="">
+                <td
+                  class="h-8 border-b text-center flex justify-between items-center"
+                >
+                  <div class="ml-8"></div>
+                  <div class="mr-8 text-blue-500">0.82</div>
+                </td>
               </tr>
-              <tr>
-                <td class="text-center">1111</td>
+              <tr class="">
+                <td class="h-8 border-b text-center flex justify-between"></td>
               </tr>
             </table>
           </div>
         </template>
 
         <div
-          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
+          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center gap-[1em]"
         >
           <div class="flex w-full justify-around">
             <img
@@ -615,7 +659,7 @@
         <div
           class="flex justify-between items-center h-full w-[35%] border-b border-r"
         >
-          <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+          <div class="w-[8%] flex flex-col ml-4 text-gray-400">
             <div>07-07</div>
             <div>18:00</div>
           </div>
@@ -636,19 +680,30 @@
           <div class="border bg-white h-full w-[10%]">
             <table class="h-full w-full">
               <tr class="">
-                <td class="border-b text-center">大 0.82</td>
+                <td
+                  class="h-8 border-b text-center flex justify-between items-center"
+                >
+                  <div class="ml-8">0</div>
+                  <div class="mr-8 text-blue-500">0.82</div>
+                </td>
               </tr>
-              <tr>
-                <td class="border-b text-center">小 0.82</td>
+              <tr></tr>
+              <tr class="">
+                <td
+                  class="h-8 border-b text-center flex justify-between items-center"
+                >
+                  <div class="ml-8"></div>
+                  <div class="mr-8 text-blue-500">0.82</div>
+                </td>
               </tr>
-              <tr>
-                <td class="text-center">1111</td>
+              <tr class="">
+                <td class="h-8 border-b text-center flex justify-between"></td>
               </tr>
             </table>
           </div>
         </template>
         <div
-          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
+          class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center gap-[1em]"
         >
           <div class="flex w-full justify-around">
             <img

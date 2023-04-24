@@ -62,7 +62,7 @@
               <div
                 class="flex justify-between items-center h-full w-[50%] border-b border-r"
               >
-                <div class="w-[10%] flex flex-col mr-0 text-gray-400">
+                <div class="w-[10%] flex flex-col text-gray-400">
                   <div>07-07</div>
                   <div>18:00</div>
                 </div>
@@ -114,7 +114,7 @@
               </template>
 
               <div
-                class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center"
+                class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center gap-[1em]"
               >
                 <div class="flex w-full justify-around">
                   <img
@@ -135,7 +135,7 @@
         <div class="bg-[#4bc27e] h-8">
           <div class="flex h-full justify-center">
             <img src="../assets/ICON/滾球數據-2.png" alt="" />
-            <img src="../assets/ICON/數據%2850%25%29.png" alt="" class="" />
+            <img src="../assets/ICON/數據(50趴).png" alt="" class="" />
           </div>
         </div>
         <img class="w-full" src="../assets/ICON/開球時間.png" alt="" />

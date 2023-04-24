@@ -1,12 +1,34 @@
 <template>
   <div>
     <div class="bg-[#29a75e] h-10">
-      <ul class="h-full flex justify-around items-center text-white">
-        <li>今日</li>
-        <li>滾球</li>
-        <li>早盤</li>
-        <li><button></button></li>
-      </ul>
+      <div class="h-full flex justify-around items-center text-white">
+        <div
+          class="w-[28%] bg-[#53b97f] h-full flex justify-center items-center"
+        >
+          今日
+        </div>
+        <div class="w-[28%] text-center">滾球</div>
+        <div class="w-[28%] text-center">早盤</div>
+        <div class="w-[16%] flex justify-center items-center">
+          <button>
+            <svg
+              class=""
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              :class="['h-6 w-6', 'transition-all', 'rotate-90']"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
     <div>
       <div>
