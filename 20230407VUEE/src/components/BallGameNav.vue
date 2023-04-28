@@ -8,7 +8,7 @@
 
     <div class="">
       <ul class="flex items-center gap-[4vw]">
-        <li><a class="hover:text-gray-500 text-white" href="">現場轉播</a></li>
+        <li><a class="{{liStyle}}" href="">現場轉播0</a></li>
         <li><a class="hover:text-gray-500 text-white" href="">即時比分</a></li>
         <li><a class="hover:text-gray-500 text-white" href="">賽果</a></li>
         <li><a class="hover:text-gray-500 text-white" href="">規則</a></li>
@@ -25,5 +25,11 @@
   </nav>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      liStyle: "hover:text-gray-500 text-white",
+    };
+  },
+};
 </script>

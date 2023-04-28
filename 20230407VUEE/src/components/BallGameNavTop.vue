@@ -9,25 +9,19 @@
     <div class="w-[77%] justify-center ml-20">
       <div class="flex items-center gap-[3vw] justify-center">
         <div>
-          <a class="hover:text-gray-500 text-white text-base" href=""
-            >現場轉播</a
-          >
+          <a :class="topicStyle" href="">現場轉播</a>
         </div>
         <div>
-          <a class="hover:text-gray-500 text-white text-base" href=""
-            >即時比分</a
-          >
+          <a :class="topicStyle" href="">即時比分</a>
         </div>
         <div>
-          <a class="hover:text-gray-500 text-white text-base" href="">賽果</a>
+          <a :class="topicStyle" href="">賽果</a>
         </div>
         <div>
-          <a class="hover:text-gray-500 text-white text-base" href="">規則</a>
+          <a :class="topicStyle" href="">規則</a>
         </div>
         <div>
-          <a class="hover:text-gray-500 text-yellow-400 text-base" href=""
-            >投注紀錄</a
-          >
+          <a :class="topicStyle" href="">投注紀錄</a>
         </div>
       </div>
     </div>
@@ -44,5 +38,11 @@
   </nav>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      topicStyle: "hover:text-gray-500 text-white text-base",
+    };
+  },
+};
 </script>

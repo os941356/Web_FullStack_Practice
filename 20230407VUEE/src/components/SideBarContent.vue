@@ -1,14 +1,26 @@
 <template>
   <div
-    :class="[
-      checked ? 'max-h-[300px]' : 'max-h-0',
-      'border border-t-0 border-gray-300',
-      'overflow-hidden transition-all',
-    ]"
+    class="w-full h-10 border border-b bg-[#efefef] flex justify-between items-center"
   >
-    <div class="p-4 text-gray-600">內容</div>
+    <div class="ml-14">{{ title }}</div>
+    <div
+      class="justify-end mr-4 flex items-center h-full w-[16%] text-green-600 text-center"
+    >
+      {{ count }}
+    </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    count: {
+      type: Number,
+      required: true,
+    },
+  },
+};
 </script>

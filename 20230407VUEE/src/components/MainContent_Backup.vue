@@ -6,18 +6,32 @@
           <ArrowPic />
           <div>足球</div>
         </li>
-        <li class="text-white w-[10%] text-small border-l border-r text-center">
-          全場讓球
-        </li>
         <li
           v-for="topic in topics"
           :key="topic"
           class="text-white w-[10%] text-small border-r text-center"
-          :class="index === 0 ? 'border-l' : ''"
         >
           {{ topic.content }}
         </li>
-        <li class="text-white w-[5%] text-small text-center">更多</li>
+        <!-- <li class="text-white w-[10%] text-small border-l border-r text-center">
+            全場讓球
+          </li>
+          <li class="text-white w-[10%] text-small border-r text-center">
+            全場大小
+          </li>
+          <li class="text-white w-[10%] text-small border-r text-center">
+            全場獨贏
+          </li>
+          <li class="text-white w-[10%] text-small border-r text-center">
+            上半讓球
+          </li>
+          <li class="text-white w-[10%] text-small border-r text-center">
+            上半大小
+          </li>
+          <li class="text-white w-[10%] text-small border-r text-center">
+            上半獨贏
+          </li>
+          <li class="text-white w-[5%] text-small text-center">更多</li> -->
       </ul>
     </div>
     <div class="bg-slate-200 h-10 flex items-center">
@@ -99,6 +113,7 @@ export default {
   data() {
     return {
       topics: [
+        { id: 1, content: "全場讓球" },
         { id: 2, content: "全場大小" },
         { id: 3, content: "全場獨贏" },
         { id: 4, content: "上半讓球" },
