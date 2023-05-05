@@ -20,6 +20,7 @@
     :title="n.sName0"
     :count="n.nCount"
     :class="menuIsOpen ? '' : 'hidden'"
+    :ballKindTitle="title"
   />
 </template>
 <script>
@@ -54,9 +55,7 @@ export default {
       type: Object,
     },
   },
-  created: function () {
-    // 在这里执行初始化操作
-  },
+  created: function () {},
   components: { SideBarContent },
 };
 </script>

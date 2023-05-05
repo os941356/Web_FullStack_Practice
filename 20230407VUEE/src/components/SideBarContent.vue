@@ -1,5 +1,6 @@
 <template>
   <button
+    @click="onclick"
     class="hover:bg-slate-300 w-full h-10 border border-b bg-[#efefef] flex justify-between items-center"
   >
     <div class="ml-14">{{ title }}</div>
@@ -12,13 +13,22 @@
 </template>
 <script>
 export default {
+  methods: {
+    onclick() {
+      if (this.ballKindTitle === "NBA") {
+        console.log(this.ballKindTitle);
+      }
+    },
+  },
   props: {
     title: {
       type: String,
-      required: true,
     },
     count: {
       type: Number,
+    },
+    ballKindTitle: {
+      type: String,
       required: true,
     },
   },
