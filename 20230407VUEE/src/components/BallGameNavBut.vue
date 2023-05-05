@@ -2,18 +2,7 @@
   <header>
     <headerbut>
       <nav class="bg-[#00873a] flex h-10">
-        <div class="flex w-[13%] justify-around items-center">
-          <div class="text-base text-white">07-07</div>
-          <div class="text-base text-white">14:30:55</div>
-          <div class="flex justify-between items-center h-full">
-            <button class="flex h-full items-center">
-              <img src="../assets/ICON/SUN-1.png" alt="" class="h-[80%]" />
-            </button>
-            <button class="flex h-full items-center">
-              <img src="../assets/ICON/MOON-2.png" alt="" class="h-[80%]" />
-            </button>
-          </div>
-        </div>
+        <BallGameNavButDate />
         <div class="w-[77%] flex justify-between items-center">
           <div class="text-white flex items-center">
             <button
@@ -117,7 +106,11 @@
   </header>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
+import BallGameNavButDate from "./BalllGameNavBut_components/BallGameNavButDate.vue";
+defineComponent({
+  BallGameNavButDate,
+});
 
 const foo = ref(null);
 const isshow = ref<boolean>(false);

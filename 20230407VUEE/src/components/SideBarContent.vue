@@ -1,6 +1,6 @@
 <template>
-  <div
-    class="w-full h-10 border border-b bg-[#efefef] flex justify-between items-center"
+  <button
+    class="hover:bg-slate-300 w-full h-10 border border-b bg-[#efefef] flex justify-between items-center"
   >
     <div class="ml-14">{{ title }}</div>
     <div
@@ -8,7 +8,7 @@
     >
       {{ count }}
     </div>
-  </div>
+  </button>
 </template>
 <script>
 export default {

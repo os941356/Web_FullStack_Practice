@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory, createWebHashHistory  } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import ReadyToStart from '../views/ReadyToStart.vue'
-import MainPage2 from '../views/MainPage2.vue'
+import SiteRuleView from '../views/SiteRuleView.vue'
 
 
 const router = createRouter({
@@ -15,14 +14,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/1',
-      name: '1',
-      component: ReadyToStart
-    },
-    {
-      path: '/2',
-      name: '2',
-      component: MainPage2
+      path: '/rule',
+      name: 'rule',
+      component: SiteRuleView
     },
     {
       path: '/about',

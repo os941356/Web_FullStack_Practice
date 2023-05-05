@@ -1,9 +1,12 @@
-<script setup lang="ts">
+<script>
 import { RouterLink, RouterView } from "vue-router";
 
-import BallGameNav from "./components/BallGameNav.vue";
 import BallGameNavTop from "./components/BallGameNavTop.vue";
 import BallGameNavBut from "./components/BallGameNavBut.vue";
+
+export default {
+  components: { BallGameNavTop, BallGameNavBut },
+};
 </script>
 
 <template>

@@ -1,7 +1,7 @@
 <template>
   <nav class="flex justify-between items-center bg-[#00873a] h-20">
     <div class="w-[13%]">
-      <a href="#"
+      <a href=""
         ><img class="h-12" src="../assets/球版01_files/logo.png" alt=""
       /></a>
     </div>
@@ -18,7 +18,7 @@
           <a :class="topicStyle" href="">賽果</a>
         </div>
         <div>
-          <a :class="topicStyle" href="">規則</a>
+          <a :class="topicStyle" href="#/rule">規則</a>
         </div>
         <div>
           <a :class="topicStyle" href="">投注紀錄</a>

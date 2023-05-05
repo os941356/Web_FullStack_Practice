@@ -15,10 +15,10 @@
   </button>
 
   <SideBarContent
-    v-for="n in contents"
-    :title="'全場/上半'"
-    :count="10"
+    v-for="n in quaters"
     :key="n"
+    :title="n.sName0"
+    :count="n.nCount"
     :class="menuIsOpen ? '' : 'hidden'"
   />
 </template>
@@ -43,19 +43,15 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
     },
     src: {
       type: String,
-      required: true,
     },
     count: {
       type: Number,
-      required: true,
     },
-    contents: {
-      type: Number,
-      required: true,
+    quaters: {
+      type: Object,
     },
   },
   created: function () {

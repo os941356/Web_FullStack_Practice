@@ -1,10 +1,9 @@
 <template>
   <main class="flex">
-    <SideBar1 :class="[sideBarClass]" @toggle-sidebar="toggleSideBar" />
+    <SideBarGameRule class="w-[13%]" @toggle-sidebar="toggleSideBar" />
     <div class="w-[1px] border"></div>
-    <div class="w-[77%] flex">
-      <MainContent />
-      <MoreInfo :class="isMoreOpen ? 'hidden' : ''" />
+    <div class="w-[77%]">
+      <SiteRuleMain />
     </div>
 
     <div class="w-[1px] border"></div>
@@ -13,14 +12,13 @@
 </template>
 
 <script>
-import SideBar1 from "@/components/SideBar1.vue";
+import SideBarGameRule from "@/components/SideBarGameRule.vue";
 import SideBar2 from "@/components/SideBar2.vue";
-import MainContent from "@/components/MainContent.vue";
-import MoreInfo from "@/components/MoreInfo.vue";
+import SiteRuleMain from "@/components/SiteRule/SiteRuleMain.vue";
 
 export default {
   name: "HomeView",
-  components: { SideBar1, SideBar2, MainContent, MoreInfo },
+  components: { SideBarGameRule, SideBar2, SiteRuleMain },
 
   data() {
     return {
