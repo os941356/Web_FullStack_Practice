@@ -37,6 +37,9 @@ export default {
     };
   },
   methods: {
+    onclick() {
+      console.log("父組件調用了1");
+    },
     toggleMenu() {
       this.menuIsOpen = !this.menuIsOpen;
     },

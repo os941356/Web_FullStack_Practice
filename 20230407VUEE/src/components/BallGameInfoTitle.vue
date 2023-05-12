@@ -5,13 +5,13 @@
         <ArrowPic @click="$emit('open')" />
         <div>{{ title }}</div>
       </li>
-      <li class="text-white w-[10%] text-small border-l border-r text-center">
-        全場讓球
+      <li class="text-white w-[15%] text-small border-l border-r text-center">
+        讓球
       </li>
       <li
         v-for="topic in topics"
         :key="topic"
-        class="text-white w-[10%] text-small border-r text-center"
+        class="text-white w-[15%] text-small border-r text-center"
       >
         {{ topic.content }}
       </li>
@@ -38,11 +38,9 @@ export default {
   data() {
     return {
       topics: [
-        { id: 2, content: "全場大小" },
-        { id: 3, content: "全場獨贏" },
-        { id: 4, content: "上半讓球" },
-        { id: 5, content: "上半大小" },
-        { id: 6, content: "上半獨贏" },
+        { id: 2, content: "大小" },
+        { id: 3, content: "獨贏" },
+        { id: 4, content: "單雙" },
       ],
     };
   },

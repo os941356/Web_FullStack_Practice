@@ -1,41 +1,87 @@
 <template>
   <div class="w-full">
     <BallGameInfo
-      v-for="nbaData in nbaDatas?.aData || []"
-      :key="nbaData"
-      :SeriesAndGames="null"
-      :title="null"
-      :series="null"
+      v-for="gameData in gameDatas || []"
+      :key="gameData"
+      :SeriesAndGames="SeriesAndGamesPost"
+      :title="title"
       :bgcolor="'bg-[#29a75e]'"
     />
-    <!-- <BallGameInfo
-      v-if="nbaTitle" //
-      :title="nbaTitle"
-      :series="'NBA冠軍聯賽'"
-      :bgcolor="'bg-[#29a75e]'"
-    />
-    <BallGameInfo
-      v-if="afcTitle"
-      :title="nbaTitle"
-      :series="'亞足冠軍聯賽'"
-      :bgcolor="'bg-[#29a75e]'"
-    /> -->
   </div>
 </template>
 
 <script>
+import { ref, watch } from "vue";
+import {
+  useGameStore,
+  useBallGameInfoTable,
+  useBallGameData,
+} from "@/stores/choosedgame";
 import BallGameInfo from "./BallGameInfo.vue";
 import axios from "axios";
 
 export default {
-  provide: {
-    title: "123",
-  },
+  components: { BallGameInfo },
+  setup() {
+    const gameDatas = ref(null);
+    const oddDatas = ref(null);
+    const SeriesAndGamesPost = ref(null);
+    const title = ref("");
+    const store = useGameStore();
+    const storeGameTable = useBallGameInfoTable();
+    const BallGameData = useBallGameData();
 
+    // 進入網站刷新nba;
+    axios
+      .get(
+        "https://demo801.dtap000s3.com/Project/t_ball00/EndTest/api/client_use/getFixOdds.php"
+      )
+      .then((response) => {
+        console.log(response.data);
+        gameDatas.value = response.data;
+        console.log(gameDatas.value, "開始產生");
+        oddDatas.value = gameDatas.value.aData.aOdds;
+        title.value = "NBA";
+        SeriesAndGamesPost.value = gameDatas.value.aData.aFixtures;
+        storeGameTable.aOdds = gameDatas.value.aData.aOdds;
+      });
+
+    watch(
+      () => BallGameData.allData,
+      (newVal) => {
+        gameDatas.value = newVal;
+        console.log(gameDatas.value, "開始產生");
+        oddDatas.value = gameDatas.value.aData.aOdds;
+        title.value = store.chooseGameType;
+        SeriesAndGamesPost.value = gameDatas.value.aData.aFixtures;
+        storeGameTable.aOdds = gameDatas.value.aData.aOdds;
+      }
+    );
+
+    return { gameDatas, title, store, SeriesAndGamesPost, oddDatas };
+  },
+};
+</script>
+
+<!-- option APi -->
+<!-- <script>
+import BallGameInfo from "./BallGameInfo.vue";
+import axios from "axios";
+import { useGameStore } from "@/stores/choosedgame";
+const store = useGameStore;
+export default {
+  watch:{
+    store.chooseGameType:{
+      
+    }
+  },
   data() {
     return {
       nbaDatas: null,
     };
+  },
+  provide: {
+    title: "123",
   },
 
   mounted() {
@@ -61,4 +107,4 @@ export default {
   },
   components: { BallGameInfo },
 };
-</script>
+</script> -->

@@ -3,9 +3,10 @@
     <div class="h-[5%]">孟非斯輝雄</div>
     <div class="賽示資訊 h-[40%] border-white border-t border-b">
       <p>NBA-全場-讓球</p>
-      <p>2023-</p>
-      <p>美國職業籃球聯賽</p>
-      <p>孟非斯輝雄vs洛杉磯湖人</p>
+      <p>date:{{ betInfo.date }}</p>
+      <p>time:{{ betInfo.time }}</p>
+      <p>league:{{ betInfo.league }}</p>
+      <p>{{ betInfo.team1 }}vs{{ betInfo.team2 }}</p>
     </div>
     <div class="投注金 h-[40%]">
       <p>投注限額 <span>100-10000</span></p>
@@ -32,12 +33,39 @@
         </button>
       </div>
     </div>
-    <div class="flex justify-around h-12 h-[10%]">
-      <button class="bg-[#53b97f] w-[40%]">確認下注</button>
-      <button class="bg-[#53b97f] w-[40%]">取消</button>
+    <div class="flex justify-around h-[10%] items-center">
+      <button class="bg-[#53b97f] w-[40%] h-full">確認下注</button>
+      <button class="bg-[#53b97f] w-[40%] h-full">取消</button>
     </div>
   </div>
 </template>
 <script>
-export default {};
+import { ref, watchEffect } from "vue";
+import { useClickBetInfo } from "@/stores/choosedgame";
+
+export default {
+  setup() {
+    const ClickBetInfo = useClickBetInfo();
+    const betInfo = ref({
+      league: null,
+      team1: null,
+      team2: null,
+      date: null,
+      time: null,
+    });
+    watchEffect(() => {
+      betInfo.value = {
+        league: ClickBetInfo.league,
+        team1: ClickBetInfo.team1,
+        team2: ClickBetInfo.team2,
+        date: ClickBetInfo.date,
+        time: ClickBetInfo.time,
+      };
+    });
+
+    return {
+      betInfo,
+    };
+  },
+};
 </script>

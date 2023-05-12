@@ -5,9 +5,10 @@
     @open="toggleBallGameInfoSeriesAndGames"
   />
   <BallGameInfoSeriesAndGames
-    v-for="(SeriesAndGames, index) in SeriesAndGames"
-    :key="index"
-    :series="series"
+    v-for="(value, key) in SeriesAndGames"
+    :key="value"
+    :series="key"
+    :games="value"
     :class="isSeriesAndGamesHidden ? '' : 'hidden'"
   />
 </template>

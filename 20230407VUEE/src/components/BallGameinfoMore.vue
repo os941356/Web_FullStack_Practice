@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center gap-[1em]"
+    class="flex flex-col border-r border-b bg-white h-full w-[5%] items-center justify-center gap-[1em] ml-auto"
   >
     <div class="flex w-full justify-around">
       <button>
@@ -20,12 +20,6 @@ export default {
       isMoreOpen: false,
     };
   },
-  methods: {
-    triggerMore() {
-      this.isMoreOpen = !this.isMoreOpen;
-      this.$emit();
-      console.log(this.isMoreOpen);
-    },
-  },
+  methods: {},
 };
 </script>

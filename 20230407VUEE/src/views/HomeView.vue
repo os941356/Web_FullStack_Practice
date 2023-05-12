@@ -4,7 +4,7 @@
     <div class="w-[1px] border"></div>
     <div class="w-[77%] flex">
       <MainContent />
-      <MoreInfo :class="isMoreOpen ? 'hidden' : ''" />
+      <!-- <MoreInfo :class="isMoreOpen ? 'hidden' : ''" /> -->
     </div>
 
     <div class="w-[1px] border"></div>
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       sideBarClass: "w-[13%]",
+      chooseGameType: null,
     };
   },
 
@@ -32,6 +33,7 @@ export default {
     toggleSideBar() {
       this.sideBarClass =
         this.sideBarClass === "w-[13%]" ? "w-[3%]" : "w-[13%]";
+      console.log(this.chooseGameType);
     },
   },
 };

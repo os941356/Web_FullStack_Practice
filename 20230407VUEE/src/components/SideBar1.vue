@@ -5,22 +5,22 @@
     >
       <button
         class="w-[28%] h-full hover:bg-[#53b97f] text-center"
-        @click="select(0)"
-        :class="selected === 0 ? 'bg-[#53b97f]' : ''"
+        @click="select(1)"
+        :class="POSTPHP.nDayRang === 1 ? 'bg-[#53b97f]' : ''"
       >
         今日
       </button>
       <button
         class="w-[28%] h-full hover:bg-[#53b97f] text-center"
-        @click="select(1)"
-        :class="selected === 1 ? 'bg-[#53b97f]' : ''"
+        @click="select(0)"
+        :class="POSTPHP.nDayRang === 0 ? 'bg-[#53b97f]' : ''"
       >
         滾球
       </button>
       <button
         class="w-[28%] h-full hover:bg-[#53b97f] text-center"
         @click="select(2)"
-        :class="selected === 2 ? 'bg-[#53b97f]' : ''"
+        :class="POSTPHP.nDayRang === 2 ? 'bg-[#53b97f]' : ''"
       >
         早盤
       </button>
@@ -50,8 +50,6 @@
         :src="'/src/assets/ICON/收藏夾.png'"
         :title="'收藏夾'"
         :count="112"
-        :contents="3"
-        @click="openmenu"
       />
       <SideBarMenuButton
         v-for="(n, key) in PHPdata"
@@ -66,55 +64,70 @@
 </template>
 
 <script>
-import SideBarMenuButton from "./SideBarMenuButton.vue";
+import { ref, onMounted, getCurrentInstance, defineComponent } from "vue";
 import axios from "axios";
+import { usePostData } from "@/stores/choosedgame";
+import SideBarMenuButton from "@/components/SideBarMenuButton.vue";
 
 export default {
-  data() {
-    return {
-      selected: 0,
-      PHPdata: null,
-      ButtonPicStyle: "h-[80%] ml-2 mr-4",
-      bool: false,
-      isChangeWidth: false,
-    };
-  },
-  methods: {
-    select(value) {
-      this.selected = value;
+  components: { SideBarMenuButton },
+
+  setup(_, { emit }) {
+    const POSTPHP = usePostData();
+    const PHPdata = ref(null);
+    const ButtonPicStyle = "h-[80%] ml-2 mr-4";
+    const bool = ref(false);
+    const isChangeWidth = ref(false);
+    const dataform = new FormData();
+
+    const select = (value) => {
+      POSTPHP.nDayRang = value;
+      dataform.append("nDayRang", POSTPHP.nDayRang);
       axios
         .post(
           "https://demo801.dtap000s3.com/Project/t_ball01/EndTest/api/client_use/getSportBar.php",
-          {
-            nDayRang: this.selected,
-          }
+          dataform
         )
         .then((response) => {
-          this.PHPdata = response.data;
-          console.log(response.data);
+          PHPdata.value = response.data;
+          console.log(PHPdata.value.nDayRang);
+          console.log("PHPData");
         })
         .catch((error) => {
           console.log(error);
         });
-    },
-    openmenu() {
-      this.bool = !this.bool;
-    },
-    changeWidth() {
-      this.isChangeWidth = !this.isChangeWidth;
-      this.$emit("toggle-sidebar");
-    },
+    };
+
+    const openmenu = () => {
+      bool.value = !bool.value;
+    };
+
+    const changeWidth = () => {
+      isChangeWidth.value = !isChangeWidth.value;
+      emit("toggle-sidebar"); // 触发父组件的事件
+    };
+
+    onMounted(() => {
+      axios
+        .get(
+          "https://demo801.dtap000s3.com/Project/t_ball01/EndTest/api/client_use/getSportBar.php"
+        )
+        .then((response) => {
+          PHPdata.value = response.data;
+          // console.log(PHPdata.value);
+        });
+    });
+
+    return {
+      POSTPHP,
+      PHPdata,
+      ButtonPicStyle,
+      bool,
+      isChangeWidth,
+      select,
+      openmenu,
+      changeWidth,
+    };
   },
-  created() {
-    axios
-      .get(
-        "https://demo801.dtap000s3.com/Project/t_ball01/EndTest/api/client_use/getSportBar.php"
-      )
-      .then((response) => {
-        this.PHPdata = response.data;
-        //console.log(this.PHPdata);
-      });
-  },
-  components: { SideBarMenuButton },
 };
 </script>
