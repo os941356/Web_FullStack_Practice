@@ -63,13 +63,15 @@ export default {
 
   setup(props) {
     const GameStore = useGameStore();
-    const selectednRound = ref("1");
+
     const BallGameData = useBallGameData();
     const PostData = usePostData();
+    const selectednRound = ref(PostData.nRound);
     watch(selectednRound, (newValue) => {
       console.log("Selected Value Changed:", newValue);
       const dataform = new FormData();
       dataform.append("nRound", newValue);
+      PostData.nRound = newValue;
       axios.get("https://yuanspeed.com/aaa.php").then((response) => {
         BallGameData.allData = response.data;
         console.log(BallGameData.allData);
