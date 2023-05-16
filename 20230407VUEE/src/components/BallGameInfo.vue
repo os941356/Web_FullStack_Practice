@@ -1,16 +1,12 @@
 <template>
-  <BallGameInfoTitle
-    :title="title"
-    :bgcolor="bgcolor"
-    @open="toggleBallGameInfoSeriesAndGames"
-  />
+  <BallGameInfoTitle :title="title" @open="toggleBallGameInfoSeriesAndGames" />
   <BallGameInfoSeriesAndGames
-    v-for="(value, key) in SeriesAndGames"
+    v-for="(value, key) in 2"
     :key="value"
     :series="key"
     :games="value"
-    :class="isSeriesAndGamesHidden ? '' : 'hidden'"
   />
+  <!-- :class="isSeriesAndGamesHidden ? '' : 'hidden'" -->
 </template>
 
 <script>
@@ -36,9 +32,7 @@ export default {
     series: {
       type: String,
     },
-    bgcolor: {
-      type: String,
-    },
+
     SeriesAndGames: {
       type: Object,
     },

@@ -5,7 +5,6 @@
       :key="gameData"
       :SeriesAndGames="SeriesAndGamesPost"
       :title="title"
-      :bgcolor="'bg-[#29a75e]'"
     />
   </div>
 </template>
@@ -32,31 +31,24 @@ export default {
     const BallGameData = useBallGameData();
 
     // 進入網站刷新nba;
-    axios
-      .get(
-        "https://demo801.dtap000s3.com/Project/t_ball00/EndTest/api/client_use/getFixOdds.php"
-      )
-      .then((response) => {
-        console.log(response.data);
-        gameDatas.value = response.data;
-        console.log(gameDatas.value, "開始產生");
-        oddDatas.value = gameDatas.value.aData.aOdds;
-        title.value = "NBA";
-        SeriesAndGamesPost.value = gameDatas.value.aData.aFixtures;
-        storeGameTable.aOdds = gameDatas.value.aData.aOdds;
-      });
+    axios.get("https://yuanspeed.com/aaa.php").then((response) => {
+      console.log(response.data);
+      gameDatas.value = response.data;
+      oddDatas.value = gameDatas.value.aData.aOdds;
+      title.value = "NBA";
+      SeriesAndGamesPost.value = gameDatas.value.aData.aFixtures;
+      storeGameTable.aOdds = gameDatas.value.aData.aOdds;
+    });
 
-    watch(
-      () => BallGameData.allData,
-      (newVal) => {
-        gameDatas.value = newVal;
-        console.log(gameDatas.value, "開始產生");
-        oddDatas.value = gameDatas.value.aData.aOdds;
-        title.value = store.chooseGameType;
-        SeriesAndGamesPost.value = gameDatas.value.aData.aFixtures;
-        storeGameTable.aOdds = gameDatas.value.aData.aOdds;
-      }
-    );
+    // watch(
+    //   () => BallGameData.allData,
+    //   (newVal) => {
+    //     oddDatas.value = gameDatas.value.aData.aOdds;
+    //     title.value = store.chooseGameType;
+    //     SeriesAndGamesPost.value = gameDatas.value.aData.aFixtures;
+    //     storeGameTable.aOdds = gameDatas.value.aData.aOdds;
+    //   }
+    // );
 
     return { gameDatas, title, store, SeriesAndGamesPost, oddDatas };
   },

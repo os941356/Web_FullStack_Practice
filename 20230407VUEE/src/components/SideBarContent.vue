@@ -14,13 +14,13 @@
 
 <script>
 import { ref } from "vue";
-import {
-  useGameStore,
-  useBallGameData,
-  usePostData,
-} from "@/stores/choosedgame";
 
 import axios from "axios";
+import {
+  useBallGameData,
+  useGameStore,
+  usePostData,
+} from "@/stores/choosedgame";
 
 export default {
   props: {
@@ -42,6 +42,7 @@ export default {
     const PostData = usePostData();
     const store = useGameStore();
     const gameTypeMap = new Map([
+      //nSid
       ["NBA", 1],
       ["籃球", 2],
       ["美棒", 3],
@@ -52,6 +53,7 @@ export default {
       ["WBC經典賽", 8],
     ]);
     const gameRoundTypeMap = new Map([
+      //nRound
       ["全場", 11],
       ["上半場", 12],
       ["下半場", 13],
@@ -61,66 +63,112 @@ export default {
     const onclick = () => {
       gamesStore.chooseGameType = props.ballKindTitle;
       gamesStore.chooseGameRound = props.title;
-
+      PostData.nSid = gameTypeMap.get(gamesStore.chooseGameType);
       dataform.append("nDayRang", PostData.nDayRang);
-      dataform.append("nSid", gameTypeMap.get(gamesStore.chooseGameType));
+      dataform.append("nSid", PostData.nSid);
       dataform.append(
         "nRound",
         gameRoundTypeMap.get(gamesStore.chooseGameRound)
       );
 
       axios
-        .post(
-          "https://demo801.dtap000s3.com/Project/t_ball00/EndTest/api/client_use/getFixOdds.php",
-          dataform
-        )
+        .post("https://yuanspeed.com/aaaa.php", dataform)
         .then((response) => {
           BallGameData.allData = response.data;
           //console.log(BallGameData.allData.aData.aOdds, "打印allData");
+          if (gamesStore.chooseGameType === "足球") {
+            for (let n in BallGameData.allData.aData.aOdds) {
+              //n=23,1,14,16
+              const obj = BallGameData.allData.aData.aOdds[n];
 
-          for (let n in BallGameData.allData.aData.aOdds) {
-            //n=23,1,14,16
-            for (let i in BallGameData.allData.aData.aOdds[n]) {
-              //i=-1,0,1
-              BallGameData.allData.aData.aOdds[n][i]["00"]["new"] = {
-                nId: "",
-                nHdp: "",
-                sHdp: "",
-                nOdds: "",
-                nOnline: "",
-                nShow: 0,
-              };
-              BallGameData.allData.aData.aOdds[n][i]["01"]["new"] = {
-                nId: "",
-                nHdp: "",
-                sHdp: "",
-                nOdds: "",
-                nOnline: "",
-                nShow: 0,
-              };
-              if (
-                !Object.prototype.hasOwnProperty.call(
-                  BallGameData.allData.aData.aOdds[n][i],
-                  "03"
-                )
-              ) {
-                BallGameData.allData.aData.aOdds[n][i]["03"] = {};
+              // 交换属性位置
+              const temp = obj["0"];
+              obj["0"] = obj["1"];
+              obj["1"] = temp;
+
+              //將-1,0,1改成 0,1,
+              for (let i in BallGameData.allData.aData.aOdds[n]) {
+                //i=-1,0,1
+
+                BallGameData.allData.aData.aOdds[n][i]["00"]["new"] = {
+                  nId: "",
+                  nHdp: "",
+                  sHdp: "",
+                  nOdds: "",
+                  nOnline: "",
+                };
+                BallGameData.allData.aData.aOdds[n][i]["01"]["new"] = {
+                  nId: "",
+                  nHdp: "",
+                  sHdp: "",
+                  nOdds: "",
+                  nOnline: "",
+                };
+                if (
+                  !Object.prototype.hasOwnProperty.call(
+                    BallGameData.allData.aData.aOdds[n][i],
+                    "02"
+                  )
+                ) {
+                  BallGameData.allData.aData.aOdds[n][i]["02"] = {
+                    1: {
+                      nHdp: "",
+                      sHdp: "",
+                      nOdds: "",
+                    },
+                    2: {
+                      nHdp: "",
+                      sHdp: "",
+                      nOdds: "",
+                    },
+                    3: {
+                      nHdp: "",
+                      sHdp: "",
+                      nOdds: "",
+                    },
+                  };
+                  console.log(BallGameData.allData.aData.aOdds[n][i]);
+                }
+                if (
+                  Object.prototype.hasOwnProperty.call(
+                    BallGameData.allData.aData.aOdds[n][i],
+                    "03"
+                  )
+                ) {
+                  BallGameData.allData.aData.aOdds[n][i]["03"]["new"] = {
+                    nId: "",
+                    nHdp: "",
+                    sHdp: "",
+                    nOdds: "",
+                    nOnline: "",
+                  };
+                }
+                if (
+                  !Object.prototype.hasOwnProperty.call(
+                    BallGameData.allData.aData.aOdds[n][i],
+                    "03"
+                  )
+                ) {
+                  BallGameData.allData.aData.aOdds[n][i]["03"] = {
+                    1: {
+                      nHdp: "",
+                      sHdp: "",
+                      nOdds: "",
+                    },
+                    2: {
+                      nHdp: "",
+                      sHdp: "",
+                      nOdds: "",
+                    },
+                    3: {
+                      nHdp: "",
+                      sHdp: "",
+                      nOdds: "",
+                    },
+                  };
+                }
               }
-
-              console.log(
-                BallGameData.allData.aData.aOdds[n][i]["00"]["1"],
-                "new"
-              );
             }
-            // BallGameData.allData.aData.aOdds[n]["1"]["00"]["4"] = {
-            //   nId: "",
-            //   nHdp: "",
-            //   sHdp: "",
-            //   nOdds: "",
-            //   nOnline: "",
-            //   nShow: 0,
-            // };
-            console.log(BallGameData.allData.aData.aOdds[n]);
           }
         })
         .catch((error) => {

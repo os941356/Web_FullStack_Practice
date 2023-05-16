@@ -1,0 +1,254 @@
+$(document).ready(function()
+{
+      // 聯盟選擇-全選
+	$('.JqLePopAll').on('click' , function()
+      {
+            if($(this).prop('checked'))
+            {
+                  $('.JqLePopSport').prop('checked',true);
+                  $('.JqLePopLeague').prop('checked',true);
+            }
+            else
+            {
+                  $('.JqLePopSport').prop('checked',false);
+                  $('.JqLePopLeague').prop('checked',false);
+            }
+      });
+
+      // 聯盟選擇-只顯示已勾選
+	$('.JqLePopOnly').on('click' , function()
+      {
+            if($(this).prop('checked'))
+            {
+                  $('.JqLePopLeague').each(function()
+                  {
+                        if(!$(this).prop('checked'))
+                        {
+                             $(this).parent('.JqLePopLeagueList').removeClass('active');
+                        }
+                  });
+            }
+            else
+            {
+                  $('.JqLePopLeagueList').addClass('active');
+            }
+      });
+
+	// 聯盟選擇-項目點選
+	$('.JqLePopSport').on('click' , function()
+      {
+            var nAllSport = $('.JqLePopSport').length;
+            var nAllSportCount = 0;
+
+            if($(this).prop('checked'))
+            {
+                  $('.JqLePopLeague[data-sport="'+$(this).attr('data-sport')+'"]').prop('checked',true);
+            }
+            else
+            {
+                  $('.JqLePopLeague[data-sport="'+$(this).attr('data-sport')+'"]').prop('checked',false);
+            }
+
+            $('.JqLePopSport').each(function()
+            {
+                  if($(this).prop('checked'))
+                  {
+                        nAllSportCount++;
+                  }
+            });
+
+            if(nAllSport == nAllSportCount)
+            {
+                  $('.JqLePopAll').prop('checked',true);
+            }
+            else
+            {
+                  $('.JqLePopAll').prop('checked',false);
+            }
+      });
+
+      // 聯盟選擇-聯盟點選
+	$('.JqLePopLeague').on('click' , function()
+      {
+            var nAllSport = $('.JqLePopSport').length;
+            var nAllSportCount = 0;
+            var nLeague = $('.JqLePopLeague[data-sport="'+$(this).attr('data-sport')+'"]').length;
+            var nLeagueCount = 0;
+
+            $('.JqLePopLeague[data-sport="'+$(this).attr('data-sport')+'"]').each(function()
+            {
+                  if($(this).prop('checked'))
+                  {
+                        nLeagueCount++;
+                  }
+            });
+
+            if(nLeague == nLeagueCount)
+            {
+                  $('.JqLePopSport[data-sport="'+$(this).attr('data-sport')+'"]').prop('checked',true);
+            }
+            else
+            {
+                  $('.JqLePopSport[data-sport="'+$(this).attr('data-sport')+'"]').prop('checked',false);
+            }
+
+            $('.JqLePopSport').each(function()
+            {
+                  if($(this).prop('checked'))
+                  {
+                        nAllSportCount++;
+                  }
+            });
+
+            if(nAllSport == nAllSportCount)
+            {
+                  $('.JqLePopAll').prop('checked',true);
+            }
+            else
+            {
+                  $('.JqLePopAll').prop('checked',false);
+            }
+      });
+
+      // 過關計算器-分盤狀態
+      $('.JqCalcuStatus').on('change' , function()
+      {
+            var nVal = $(this).val();
+
+            $(this).attr('class','JqCalcuStatus');
+            if($(this).find('option:selected').attr('data-class'))
+            {
+                  $(this).addClass($(this).find('option:selected').attr('data-class'));
+            }
+
+            if((nVal == 100) | (nVal == -100))
+            {
+                  $(this).parents('.JqCalcuList').find('.JqCalcuPercent').attr('disabled',true);
+                  $(this).parents('.JqCalcuList').find('.JqCalcuPercent').val(100);
+            }
+            else if(nVal == 0)
+            {
+                  $(this).parents('.JqCalcuList').find('.JqCalcuPercent').attr('disabled',true);
+                  $(this).parents('.JqCalcuList').find('.JqCalcuPercent').val(0);
+            }
+            else
+            {
+                  $(this).parents('.JqCalcuList').find('.JqCalcuPercent').attr('disabled',false);
+                  $(this).parents('.JqCalcuList').find('.JqCalcuPercent').val('');
+            }
+      });
+
+      // 過關計算器-計算
+      $('.JqCalcuCount').on('click' , function()
+      {
+            var   aErr = [],
+                  sErrMsg = '',
+                  nErr = 0,
+                  nList = $('.JqCalcuList').length;
+            $('.JqCalCuErr').html('');
+
+            for($nIndex=1;$nIndex<=nList;$nIndex++)
+            {
+                  aErr[$nIndex] = [];
+                  aErr[$nIndex]['sErrMsg'] = sErrMsg;
+                  aErr[$nIndex]['nErr'] = nErr;
+            }
+
+            for($nIndex=nList;$nIndex>0;$nIndex--)
+            {
+                  var nOdds = $('.JqCalcuList').eq($nIndex).find('.JqCalcuOdds').val();
+                  if(nOdds != '')
+                  {
+                        for($nUpon=1;$nUpon<=$nIndex;$nUpon++)
+                        {
+                              var nUponOdds = $('.JqCalcuList').eq($nUpon).find('.JqCalcuOdds').val();
+                              if(nUponOdds == '')
+                              {
+                                    // aErr[$nUpon]['sErrMsg'] += '<div>賠率不能為空</div>';
+                                    // aErr[$nUpon]['nErr'] ++;
+
+                                    aErr[$nUpon]['sErrMsg'] += '<div>賠率不能為空</div>';
+                                    aErr[$nUpon]['nErr'] ++;
+                              }
+                        }
+                  }
+            }
+
+            $('.JqCalcuList').each(function()
+            {
+                  var nStatus = $(this).find('.JqCalcuStatus').val();
+                  if((nStatus == 1) || (nStatus == -1))
+                  {
+                        if($(this).find('.JqCalcuPercent').val() == '')
+                        {
+                              aErr[$(this).index()]['sErrMsg'] += '<div>百分比不能為空</div>';
+                              aErr[$(this).index()]['nErr'] ++;
+                        }
+                  }
+                  if(aErr[$(this).index()]['nErr'] > 0)
+                  {
+                        $(this).find('.JqCalCuErr').append(aErr[$(this).index()]['sErrMsg']);
+                        $(this).find('.JqCalCuErr').addClass('active');
+                  }
+            });
+      });
+
+      // 過關計算器-重置
+      $('.JqCalcuClear').on('click' , function()
+      {
+            $('.JqCalcuOdds').val('');
+            $('.JqCalcuStatus').val(100);
+            $('.JqCalcuStatus').attr('class','JqCalcuStatus win');
+            $('.JqCalcuPercent').val(100);
+            $('.JqCalcuPercent').attr('disabled',true);
+            $('.JqCalCuErr').html('');
+      });
+
+      // 功能設定-項目
+      $('.JqSettingItem').on('click' , function()
+      {
+            var sCtrl = $(this).attr('data-ctrl');
+            $(this).siblings('.JqSettingItem').removeClass('active');
+            $(this).addClass('active');
+
+            if(sCtrl == 'today') // 今日
+            {
+                  $('.JqSettingItem[data-ctrl="already"]').removeClass('byebye');
+            }
+
+            if(sCtrl == 'ing') // 滾球
+            {
+                  $('.JqSettingItem[data-ctrl="already"]').addClass('byebye');
+                  $('.JqSettingItem[data-ctrl="already"]').removeClass('active');
+            }
+
+            if(sCtrl == 'custom') // 自訂
+            {
+                  $(this).siblings('.JqSettingItem[data-ctrl="custom"]').addClass('active');
+            }
+      });
+
+      // 功能設定-籌碼
+      $('.JqSettingChip').on('click' , function()
+      {
+            var nCount = 0;
+            $(this).toggleClass('active')
+            $('.JqSettingChip').each(function()
+            {
+                  if($(this).hasClass('active'))
+                  {
+                        nCount ++;
+                  }
+            });
+            
+            if(nCount == 0)
+            {
+                  $(this).addClass('active');
+            }
+
+            if(nCount > 6)
+            {
+                  $(this).removeClass('active');
+            }
+      });
+});

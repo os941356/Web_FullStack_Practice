@@ -32,14 +32,14 @@
         <!-- v-for="gameplay in aOdds[key][0]" -->
         <table class="h-full w-full">
           <!-- 迴圈生成橫向表格 -->
-          <template v-for="table in gameplay" :key="table">
+          <template v-for="(table, tablekey) in gameplay" :key="tablekey">
             <tr class="border-b h-7">
               <td class="flex justify-between items-center h-full">
                 <div class="flex mx-4 w-[50%] justify-center items-center">
                   {{ table.sHdp }}
                 </div>
                 <button
-                  @click="ClickBet(game)"
+                  @click="ClickBet(game, tablekey)"
                   class="flex mx-4 text-blue-500 hover:bg-slate-300 w-[50%] justify-center items-center h-full"
                 >
                   {{ table.nOdds }}
@@ -70,9 +70,6 @@ export default {
     series: {
       type: String,
     },
-    bgcolor: {
-      type: String,
-    },
     games: {
       type: Object,
     },
@@ -84,22 +81,26 @@ export default {
     BallGameinfoMore,
   },
 
-  setup() {
+  setup(props) {
     onMounted(() => {
-      //console.log(aOdds);
+      console.log(props.games);
     });
     const BallGameInfoTable = useBallGameInfoTable();
     const aOdds = BallGameInfoTable.aOdds;
     const ClickBetInfo = useClickBetInfo();
     const ishidden = ref(false);
 
-    const ClickBet = (game) => {
+    const ClickBet = (game, buttonindex) => {
       ClickBetInfo.league = game.sLeague;
       ClickBetInfo.team1 = game.sTeam1;
       ClickBetInfo.team2 = game.sTeam2;
-      ClickBetInfo.dateandtime = game.sStartTime.substring(5, 10);
+      ClickBetInfo.clickedTeam = ClickBetInfo.date = game.sStartTime.substring(
+        5,
+        10
+      );
       ClickBetInfo.time = game.sStartTime.substring(11, 16);
       console.log(ClickBetInfo.date);
+      console.log(buttonindex);
     };
 
     function open() {

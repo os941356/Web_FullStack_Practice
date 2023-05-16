@@ -1,0 +1,188 @@
+/*
+	2021/06/04 V01
+*/
+/*****     彈跳視窗     *****/
+.jumpMsgBox
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: 200;
+	display: none;
+}
+
+.jumpMsgBox.active
+{
+	display: block;
+}
+
+.jumpMsgContainer /*     整個背景顏色     */
+{
+	background: white;
+	width: 440px;
+	position: absolute;
+	z-index: 5;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border-radius: 10px;
+}
+
+.jumpMsgInner
+{
+	width: 100%;
+}
+
+.jumpMsgTop /*     標題背景顏色     */
+{
+	background: #00873A;
+	box-sizing: border-box;
+	padding: 11px 10px;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	border-radius: 10px 10px 0 0;
+}
+
+.jumpMsgTit /*     標題文字顏色     */
+{
+	color: white;
+	word-break: break-all;
+	width: 100%;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.jumpMsgContent
+{
+	width: calc(100% - 40px);
+	margin: 15px 20px;
+	max-height: 422px;
+	overflow-y: scroll;
+	word-break: break-all;
+	position: relative;
+}
+
+.jumpMsgContent::-webkit-scrollbar
+{
+	/* background-color: #333333; */
+	width: 6px;	
+}
+
+.jumpMsgContent::-webkit-scrollbar-thumb
+{
+	background-color: #646464;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);	
+	width: 6px;
+	border-radius: 999rem;	
+}
+
+.jumpMsgContent img
+{
+	width: auto;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+.jumpMsgIcon
+{
+	color: black;
+	width: 100%;
+	font-size: 40px;
+	text-align: center;
+}
+
+.jumpMsgContentTxt /* 訊息文字 */
+{
+	color: black;
+	width: 100%;
+	text-align: center;
+	padding: 30px 0;
+}
+
+.jumpMsgContentArticle /* 多文字訊息 */
+{
+	color: black;
+	word-break: break-all;
+	padding: 10px 0;
+}
+
+.jumpMsgContentArticle > div:not(:last-child)
+{
+	margin: 0 0 5px 0;
+}
+
+.jumpMsgBtnBox
+{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.jumpMsgBtnCell
+{
+	flex: 1;
+}
+
+.jumpMsgBtnCell:not(:last-child)
+{
+	margin: 0 5px 0 0;
+}
+
+.jumpMsgBtn /*     一般按鈕背景顏色     */
+{
+	background: #00873A;
+	display: block;
+	cursor: pointer;
+	width: 100%;
+	text-align: center;
+	border-radius: 0 0 10px 10px;
+	box-sizing: border-box;
+}
+
+.jumpMsgBtn.cancel /*     取消,否定...按鈕背景顏色     */
+{
+	background: #CCCCCC;
+}
+
+.jumpMsgBtnTxt /*     一般按鈕文字顏色     */
+{
+	color: white;
+	display: block;
+	padding: 15px 0;
+	width: 100%;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.jumpMsgBtn.cancel .jumpMsgBtnTxt /*     取消,否定...按鈕文字顏色     */
+{
+	color: white;
+}
+
+.jumpMsgBg
+{
+	background: rgba(0,0,0,0.4);
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+@media screen and (max-width:767px)
+{
+	.jumpMsgContainer
+	{
+		width: calc(100% - 40px);
+	}
+
+	.jumpMsgContent
+	{
+		max-height: 350px;
+	}
+}

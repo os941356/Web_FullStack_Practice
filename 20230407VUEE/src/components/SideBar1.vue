@@ -85,11 +85,12 @@ export default {
       dataform.append("nDayRang", POSTPHP.nDayRang);
       axios
         .post(
-          "https://demo801.dtap000s3.com/Project/t_ball01/EndTest/api/client_use/getSportBar.php",
+          "https://demo801.dtap000s3.com/Project/t_ball00/EndTest/api/client_use/getSportBar.php",
           dataform
         )
         .then((response) => {
-          PHPdata.value = response.data;
+          PHPdata.value = response.data.aData;
+          console.log(PHPdata.value, "PHPdata");
           console.log(PHPdata.value.nDayRang);
           console.log("PHPData");
         })
@@ -110,10 +111,10 @@ export default {
     onMounted(() => {
       axios
         .get(
-          "https://demo801.dtap000s3.com/Project/t_ball01/EndTest/api/client_use/getSportBar.php"
+          "https://demo801.dtap000s3.com/Project/t_ball00/EndTest/api/client_use/getSportBar.php"
         )
         .then((response) => {
-          PHPdata.value = response.data;
+          PHPdata.value = response.data.aData;
           // console.log(PHPdata.value);
         });
     });

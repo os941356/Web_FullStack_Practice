@@ -1,0 +1,103 @@
+
+
+$(document).ready(function()
+{
+	// 表單
+	$(document).on('submit','#JqFetchForm', function( event )
+	{
+		event.preventDefault();
+		var sSubmitText = $('input[type="submit"]').val();
+		$('input[type="submit"]').prop('disabled', true);
+		$('input[type="submit"]').val(aJSDEFINE['DATAPROCESS']);
+
+		var sUrl = $('#JqFetchForm').attr('action');
+		fetch(sUrl, {
+			method: 'post',
+			body: new FormData(document.getElementById('JqFetchForm'))
+		}).then( res => {
+			if (!res.ok)
+			{
+				alert(res.statusText);
+				 throw new Error(res.statusText);
+			}
+
+			return res.json();
+		}).then( result => {
+			$('.JqJumpMsgBox[data-showmsg=0]').addClass('active');
+			$('input[type="submit"]').val(sSubmitText);
+			// console.log(result);
+			if(result.nStatus == 0)
+			{
+				$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgContentTxt').html(result.sMsg);
+				$('.JqJumpMsgBox[data-showmsg=0]').find('.JqTitle').text(aJSDEFINE['ERRORMSG']);
+
+				if(result.sUrl == '')
+				{
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').addClass('JqClose');
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').attr('href','javascript:void(0)');
+					$('input[type="submit"]').prop('disabled', false);
+				}
+				else
+				{
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').attr('href',result.sUrl);
+				}
+			}
+			else
+			{
+				if(result.nAlertType == 1)
+				{
+					$('.JqJumpMsgBox[data-showmsg=0]').removeClass('active');
+					if (result.aData.sForm !== undefined)
+					{
+						$('body').append(result.aData.sForm);
+						$('.JqJumpMsgBox[data-showmsg=0]').removeClass('active');
+					}
+					else
+					{
+						location.href = result.sUrl;
+					}
+				}
+				else
+				{
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').removeClass('JqClose');
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgContentTxt').html(result.sMsg);
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').attr('href',result.sUrl);
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqIcon').removeClass('fa-times');
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqIcon').addClass('fa-check');
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqTitle').text(aJSDEFINE['RIGHTMSG']);
+				}
+			}
+		}).catch( err => {
+			console.log(`Reject ${err}`);
+			$('input[type="submit"]').prop('disabled', false);
+		})
+	})
+
+	// 刪除
+	$('.JqFetchDel').on('click', function(event)
+	{
+		event.preventDefault();
+		$('.JqJumpMsgBox[data-showmsg=del]').removeClass('active');
+
+		var sUrl = $(this).attr('href');
+		fetch(sUrl, {
+		}).then( res => {
+			if (!res.ok)
+			{
+				alert(res.statusText);
+				 throw new Error(res.statusText);
+			}
+			return res.json();
+		}).then( result => {
+			$(this).unbind(event);
+			$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgContentTxt').html(result.sMsg);
+			$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').attr('href',result.sUrl);
+
+			$('.JqJumpMsgBox[data-showmsg=0]').addClass('active');
+
+
+		}).catch( err => {
+			console.log(`Reject ${err}`);
+		})
+	});
+});

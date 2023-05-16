@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { computed } from 'vue';
 
 export const useGameStore = defineStore("game", {
   state: () => ({
@@ -6,9 +7,9 @@ export const useGameStore = defineStore("game", {
     chooseGameRound:null,
   }),
 });
-export const useBallGameData = defineStore("ReceivedGameData", {
+export const useBallGameData = defineStore("ReceivedGameData",  {
   state: () => ({
-    allData: null,
+    allData: [],
     aData: null,
     aOdds: null,
   }),
@@ -29,7 +30,8 @@ export const usePostData = defineStore("PostData", {
   state() {
     return {
    
-      nDayRang:null,
+      nDayRang:1,
+
       nSid:null,
 
     
@@ -46,6 +48,7 @@ export const useClickBetInfo = defineStore("ClickBetInfo", {
       league:null,
       team1: null,
       team2: null,
+      clickedTeam:null,
       date: null,
       time: null
     };

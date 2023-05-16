@@ -1,0 +1,1 @@
+var aJSDEFINE = new Array();aJSDEFINE['SUBMIT'] = '提交';aJSDEFINE['COPYSUCCESS'] = '複製成功';aJSDEFINE['DATAPROCESS'] = '資料處理中';aJSDEFINE['RIGHTMSG'] = '確認消息';aJSDEFINE['ERRORMSG'] = '錯誤消息';

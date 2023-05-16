@@ -1,0 +1,309 @@
+<template>
+  <div class="w-[35%]">
+    <div class="bg-[#4bc27e] h-8">
+      <div class="flex h-full justify-center">
+        <img src="../assets/ICON/滾球數據-2.png" alt="" />
+        <img src="../assets/ICON/數據(50趴).png" alt="" class="" />
+      </div>
+    </div>
+    <img class="w-full" src="../assets/ICON/開球時間.png" alt="" />
+    <div class="flex bg-[#29a75e] h-10 w-full justify-around">
+      <button>
+        <img
+          class="h-full align-middle"
+          src="../assets/ICON/滾球數據-2.png"
+          alt=""
+        />
+      </button>
+      <button>
+        <img class="h-full w-full" src="../assets/ICON/對戰.png" alt="" />
+      </button>
+      <button>
+        <img class="h-full" src="../assets/ICON/排名.png" alt="" />
+      </button>
+      <button>
+        <img class="h-full" src="../assets/ICON/陣容.png" alt="" />
+      </button>
+    </div>
+    <div class="flex bg-[#4bc27e] h-8 text-white">
+      <button>
+        <svg
+          class="mx-2"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+      <button class="">全部</button>
+      <button class="ml-4">全場/上半</button>
+      <button class="ml-4">角球/罰牌</button>
+    </div>
+    <div class="flex bg-[#d0fae2] h-8">
+      <button>
+        <svg
+          class="mx-2"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg></button
+      ><button>全部</button>
+    </div>
+    <div class="bg-[#e8e8e8] h-7 text-sm flex items-center justify-center">
+      獨贏
+    </div>
+    <div class="bg-white h-7 flex justify-between items-center text-sm">
+      <div
+        class="w-[33%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">主</div>
+        <div class="mx-2 text-blue-500">0.0010</div>
+      </div>
+      <div
+        class="w-[33%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">和</div>
+        <div class="mx-2 text-blue-500">8.0010</div>
+      </div>
+      <div
+        class="w-[33%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">和</div>
+        <div class="mx-2 text-blue-500">18.685</div>
+      </div>
+    </div>
+    <div class="bg-[#e8e8e8] h-7 text-sm flex items-center justify-center">
+      讓球
+    </div>
+    <div class="bg-whtie h-7 text-sm flex">
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-4">主-3.5</div>
+        <div class="mx-4 text-blue-500">0.96</div>
+      </div>
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">客+3.5</div>
+        <div class="mx-2 text-blue-500">0.96</div>
+      </div>
+    </div>
+    <div class="bg-[#e8e8e8] h-7 text-sm flex items-center justify-center">
+      大小
+    </div>
+    <div class="flex bg-white h-7 text-sm">
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-4">大4</div>
+        <div class="mx-4 text-blue-500">1.05</div>
+      </div>
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">小4</div>
+        <div class="mx-2 text-blue-500">0.87</div>
+      </div>
+    </div>
+    <div class="bg-[#e8e8e8] h-7 text-sm flex items-center justify-center">
+      單双
+    </div>
+    <div class="flex bg-white h-7 text-sm">
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-4">單</div>
+        <div class="mx-4 text-blue-500">1.05</div>
+      </div>
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">双</div>
+        <div class="mx-2 text-blue-500">0.87</div>
+      </div>
+    </div>
+    <div class="flex bg-[#d0fae2] h-8">
+      <button class="w-8">
+        <svg
+          class="mx-2"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+      <button>全場-角球數</button>
+    </div>
+    <div class="bg-[#e8e8e8] h-7 text-sm flex items-center justify-center">
+      大小
+    </div>
+    <div class="flex bg-white h-7 text-sm">
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-4">大</div>
+        <div class="mx-4 text-blue-500">9.5</div>
+      </div>
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">小</div>
+        <div class="mx-2 text-blue-500">0.87</div>
+      </div>
+    </div>
+    <div class="bg-[#e8e8e8] h-7 text-sm flex items-center justify-center">
+      單双
+    </div>
+    <div class="flex bg-white h-7 text-sm">
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-4">單</div>
+        <div class="mx-4 text-blue-500">1.05</div>
+      </div>
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">双</div>
+        <div class="mx-2 text-blue-500">0.87</div>
+      </div>
+    </div>
+    <div class="flex bg-[#d0fae2] h-8">
+      <button class="w-8">
+        <svg
+          class="mx-2"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+      <button>上半場-角球數</button>
+    </div>
+    <div class="bg-[#e8e8e8] h-7 text-sm flex items-center justify-center">
+      大小
+    </div>
+    <div class="flex bg-white h-7 text-sm">
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-4">大</div>
+        <div class="mx-4 text-blue-500">9.5</div>
+      </div>
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">小</div>
+        <div class="mx-2 text-blue-500">0.87</div>
+      </div>
+    </div>
+    <div class="bg-[#e8e8e8] h-7 text-sm flex items-center justify-center">
+      單双
+    </div>
+    <div class="flex bg-white h-7 text-sm">
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-4">單</div>
+        <div class="mx-4 text-blue-500">1.05</div>
+      </div>
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">双</div>
+        <div class="mx-2 text-blue-500">0.87</div>
+      </div>
+    </div>
+    <div class="flex bg-[#d0fae2] h-8">
+      <button class="w-8">
+        <svg
+          class="mx-2"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          :class="['h-6 w-6', 'transition-all', 'rotate-180']"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+      <button>上半場-角球數</button>
+    </div>
+    <div class="bg-[#e8e8e8] h-7 text-sm flex items-center justify-center">
+      大小
+    </div>
+    <div class="flex bg-white h-7 text-sm">
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-4">大</div>
+        <div class="mx-4 text-blue-500">9.5</div>
+      </div>
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">小</div>
+        <div class="mx-2 text-blue-500">0.87</div>
+      </div>
+    </div>
+    <div class="bg-[#e8e8e8] h-7 text-sm flex items-center justify-center">
+      單双
+    </div>
+    <div class="flex bg-white h-7 text-sm">
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-4">單</div>
+        <div class="mx-4 text-blue-500">1.05</div>
+      </div>
+      <div
+        class="w-[50%] flex h-full w-full border-r justify-between items-center"
+      >
+        <div class="mx-2">双</div>
+        <div class="mx-2 text-blue-500">0.87</div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  export default {};
+</script>

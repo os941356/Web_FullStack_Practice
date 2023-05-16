@@ -1,0 +1,867 @@
+$(document).ready(function()
+{
+	var bBetControl = true;
+	// 快速投注
+	$('.JqQuickBet').on('click' , function()
+	{
+		if($(this).prop('checked'))
+		{
+			$('.JqQuickBetMoney').addClass('active');
+		}
+		else
+		{
+			$('.JqQuickBetMoney').removeClass('active');
+		}
+	});
+
+	// Nav縮小
+	$('.JqNavShrink').on('click' , function()
+	{
+		$('.JqNav').addClass('active');
+
+		// Nav 選單位置
+		navMenuPos();
+	});
+
+	// Nav放大
+	$('.JqNavGrow').on('click' , function()
+	{
+		$('.JqNav').removeClass('active');
+	});
+
+	// nav賽式打開
+	$('.JqNavGames').on('click' , function()
+	{
+		if(!$(this).parent('.JqNavGamesBlock').hasClass('active'))
+		{
+			// 抓取資料
+			$(this).parent('.JqNavGamesBlock').addClass('active');
+		}
+		else
+		{
+			$(this).parent('.JqNavGamesBlock').removeClass('active');
+		}
+	});
+
+	// 選擇器
+	$('.JqBody').on('click' , '.JqChoose', function()
+	{
+		$('.JqChoose').not($(this)).removeClass('active');
+		$('.JqChooseBox').not($(this)).removeClass('active');
+		if($(this).hasClass('active'))
+		{
+			$(this).removeClass('active');
+			$(this).siblings('.JqChooseBox').removeClass('active');
+		}
+		else
+		{
+			$(this).addClass('active');
+			$(this).siblings('.JqChooseBox').addClass('active');
+		}
+	});
+
+	// 運動項目收合
+	$('.JqSportBtn').on('click' , function()
+	{
+		if($(this).parents('.JqSportList').hasClass('active'))
+		{
+			$('.JqLeagueBtn[data-sportno="'+$(this).parents('.JqSportList').attr('data-sport')+'"]').removeClass('active');
+			$('.JqLeagueBox[data-sportno="'+$(this).parents('.JqSportList').attr('data-sport')+'"]').removeClass('active');
+			$(this).parents('.JqSportList').removeClass('active');
+		}
+		else
+		{
+			$('.JqLeagueBtn[data-sportno="'+$(this).parents('.JqSportList').attr('data-sport')+'"]').addClass('active');
+			$('.JqLeagueBox[data-sportno="'+$(this).parents('.JqSportList').attr('data-sport')+'"]').addClass('active');
+			$(this).parents('.JqSportList').addClass('active');
+		}
+	});
+
+	// 聯盟收合
+	$('.JqLeagueBtn').on('click' , function()
+	{
+		var nLeague= $('.JqLeagueBtn[data-sportno="'+$(this).attr('data-sportno')+'"]').length;
+		var nCount = 0;
+		$(this).toggleClass('active');
+		$('.JqLeagueBox[data-leagueno="'+$(this).attr('data-league')+'"]').toggleClass('active');
+		$.each($(('.JqLeagueBtn[data-sportno="'+$(this).attr('data-sportno')+'"]')),function(i,item)
+		{
+			if(!$(item).hasClass('active'))
+			{
+				nCount ++;
+			}
+		});
+
+		if(nCount == nLeague)
+		{
+			$('.JqSportList').removeClass('active');
+		}
+		else
+		{
+			$('.JqSportList').addClass('active');
+		}
+	});
+
+	// 收藏賽事
+	$('.JqFvBtn').on('click' , function()
+	{
+		$(this).toggleClass('active');
+	});
+
+	// 詳細賠率 顯示
+	$('.JqMoreOdds').on('click' , function()
+	{
+		var oThis = $(this);
+		if(oThis.hasClass('active'))
+		{
+			oThis.removeClass('active');
+			$('.JqMoreOddsBox').removeClass('active');
+		}
+		else
+		{
+			$('.JqMoreOdds').removeClass('active');
+			oThis.addClass('active');
+			$('.JqMoreOddsBox').addClass('active');
+
+			$('.JqShowHomeName').text(oThis.parent('.JqgameDataList').find('.JqHomeName').text());
+			$('.JqShowAwayName').text(oThis.parent('.JqgameDataList').find('.JqAwayName').text());
+			// console.log(oThis.parents('.JqgameDataList').attr('data-fid'))
+			//取得odds
+			$.ajax({
+				url: $('input[name=sMoreOddsJWT]').val(),
+				data:
+				{
+					nFid:	oThis.parent('.JqgameDataList').attr('data-fid'),
+				},
+				type: "POST",
+				dataType:'json',
+				success: function (result)
+				{
+					// console.log(result);
+					$('.JqWgNoMore').siblings('div').remove();
+					$('.JqMethodBtnBox').append(result.aData.sMethodHtml)
+					$('.JqgameOddsBox').empty().append(result.aData.sHtml);
+
+					oThis.parents('.JqgameDataList').find('.JqBetBtn.BgPink').each(function(index, el)
+					{
+						$('.JqgameOddsBox').find('.JqBetBtn[data-id='+$(el).attr('data-id')+']').addClass('BgPink');
+					});
+				},
+				error: function (aData)
+				{
+					console.log("err");
+				}
+			});
+
+		}
+	});
+
+	// 詳細賠率 顯示
+	$('.JqMoreOddsClose').on('click' , function()
+	{
+		$('.JqMoreOdds').removeClass('active');
+		$('.JqMoreOddsBox').removeClass('active');
+	});
+
+	// 詳細賠率 - 全部下注類型收和
+	$('.JqWgNoMore').on('click' , function()
+	{
+		if($(this).hasClass('active'))
+		{
+			$(this).removeClass('active');
+			$('.JqWgTitle').removeClass('active');
+			$('.JqWgOdds').addClass('active');
+		}
+		else
+		{
+			$(this).addClass('active');
+			$('.JqWgTitle').addClass('active');
+			$('.JqWgOdds').removeClass('active');
+		}
+	});
+
+	// 詳細賠率 - 單下注類型收和
+	$('.JqMoreOddsBox').on('click' ,'.JqWgTitle', function()
+	{
+		$(this).toggleClass('active');
+		$(this).siblings('.JqWgOdds').toggleClass('active');
+
+		var nLeague= $('.JqWgTitle').length;
+		var nCount = 0;
+		$.each($('.JqWgTitle'),function(i,item)
+		{
+			if($(item).hasClass('active'))
+			{
+				nCount ++;
+			}
+		});
+
+		if(nCount == nLeague)
+		{
+			$('.JqWgNoMore').addClass('active');
+		}
+		else
+		{
+			$('.JqWgNoMore').removeClass('active');
+		}
+	});
+
+	$('.JqMoreOddsBox').on('click' ,'.JqMethodBtn', function()
+	{
+		if (!$(this).hasClass('active'))
+		{
+			$('.JqMethodBtn').removeClass('active');
+			$(this).addClass('active');
+			if ($(this).attr('data-group') != '0')
+			{
+				$('.JqMoreOddsBox').find('.JqgameOddsBox').children('div').removeClass('active');
+				$('.JqMoreOddsBox').find('.JqgameOddsBox').children('div[data-group='+$(this).attr('data-group')+']').addClass('active');
+			}
+			else
+			{
+				$('.JqMoreOddsBox').find('.JqgameOddsBox').children('div').addClass('active');
+			}
+		}
+	});
+
+	// 投注-tab切換
+	$('.JqBetViewBtn').on('click' , function()
+	{
+		$('.JqBetViewBtn').removeClass('active');
+		$(this).addClass('active');
+
+		$('.JqBetView').removeClass('active');
+		$('.JqBetView[data-view="'+$(this).attr('data-view')+'"]').addClass('active');
+	});
+
+	// 投注-刪除注單
+	$('.JqBetDel').on('click' , function()
+	{
+		var sView = $(this).parents('.JqBetView').attr('data-view');
+		$(this).parents('.JqBetBlock').remove();
+		if($('.JqBetView[data-view="'+ sView +'"]').find('.JqBetBlock').length == 0)
+		{
+			$('.JqBetView[data-view="'+ sView +'"]').find('.JqBetDefault').addClass('active');
+		}
+	});
+
+	// 賠率切換
+	$('.JqOddFormat').on('click', function(){
+		document.cookie = `sOddFormat=${$(this).data('format')}`;
+		location.reload();
+	});
+
+	// 點擊賠率
+	$('.JqgameBox').on('click', '.JqBetBtn', function()
+	{
+		if($('.JqHeaderBtnBet').hasClass('active'))
+		{
+			$('.JqHeaderBtnBet').removeClass('active');
+			$('.JqBetBox').addClass('active');
+			$('.JqgameBox').addClass('layoutwid');
+		}
+
+		if (!$(this).hasClass('JqBetFalse'))
+		{
+			var id = $(this).attr('data-id');
+			$('.JqgameBox').find('.JqBetBtn[data-id='+id+']').toggleClass('BgPink');
+			//顯示投注資訊
+			if ($(this).hasClass('BgPink'))
+			{
+				var sHtml = $('.JqCopying').html();
+
+				var betData = JSON.parse($(this).attr('data-betdata'));
+				var count = parseInt($('.JqBetViewBtn[data-view=ing]').find('.JqBetViewCount').text());
+				if ($(this).parents('.JqgameDataList').attr('data-gamedata') != undefined)
+				{
+					var gameData = JSON.parse($(this).parents('.JqgameDataList').attr('data-gamedata'));
+				}
+				else
+				{
+					var gameData = JSON.parse($('.JqMoreOdds.active').parents('.JqgameDataList').attr('data-gamedata'));
+				}
+
+				betData.nPoint = $(this).attr('data-hdp');
+				betData.nOddsCal = $(this).attr('data-calcodds');
+				betData.nOdds = $(this).find('.JqOddsNow').text();
+				console.log(betData);
+				$.each(betData, function(LPsKey, LPsVal)
+				{
+					if(LPsKey == 'nBet') return;
+
+					var LPreg = new RegExp('\\['+LPsKey+'\\]','g');
+					sHtml = sHtml.replace(LPreg,LPsVal);
+					if(LPsKey == 'nPoint')
+					{
+						var LPreg = new RegExp('\\['+LPsKey+'Show'+'\\]','g');
+						// console.log(betData.sBet+'--'+LPsVal);
+
+						// switch(betData.nBet)
+						// {
+						// 	case '1':
+						// 		sHtml = sHtml.replace(LPreg, '-'+LPsVal);
+						// 		break;
+						// 	case '2':
+						// 		sHtml = sHtml.replace(LPreg, '+'+LPsVal.substr(1));
+						// 		break;
+						// 	case '4':
+						// 		sHtml = sHtml.replace(LPreg,LPsVal.substr(1));
+						// 		break;
+						// 	default :
+						// 		sHtml = sHtml.replace(LPreg,LPsVal);
+						// 		break;
+						// }
+						if (betData.sMethodCode == '00')
+						{
+							//  讓球注單分盤顯示+-要相反
+							if (LPsVal.substr(0,1) == '-')
+							{
+								sHtml = sHtml.replace(LPreg,LPsVal.substr(1));
+							}
+							else
+							{
+								sHtml = sHtml.replace(LPreg,'-'+LPsVal);
+							}
+						}
+						else if(betData.nBet == 4)	sHtml = sHtml.replace(LPreg,LPsVal.substr(1));
+						else 					sHtml = sHtml.replace(LPreg,LPsVal);
+
+					}
+				});
+
+				$.each(gameData, function(LPsKey, LPsVal)
+				{
+					var LPreg = new RegExp('\\['+LPsKey+'\\]','g');
+					sHtml = sHtml.replace(LPreg,LPsVal);
+				});
+
+				$('.JqBetView').removeClass('active');
+				$('.JqBetView[data-view=ing]').addClass('active')
+				$('.JqBetView[data-view=ing]').append(sHtml);
+				$('.JqBetView[data-view=ing]').find('.JqBetDefault').removeClass('active');
+				$('.JqBetViewBtn').removeClass('active');
+				$('.JqBetViewBtn[data-view=ing]').addClass('active');
+				$('.JqBetViewBtn[data-view=ing]').find('.JqBetViewCount').text(count+1);
+			}
+			else
+			{
+				var count = parseInt($('.JqBetViewBtn[data-view=ing]').find('.JqBetViewCount').text());
+
+				$('.JqbetOrderBox[data-id='+id+']').remove();
+				$('.JqBetViewBtn[data-view=ing]').find('.JqBetViewCount').text(count-1);
+
+				if (count-1 == 0)
+				{
+					$('.JqBetView[data-view=ing]').find('.JqBetDefault').addClass('active');
+				}
+			}
+		}
+	});
+
+	// 投注資訊移除
+	$('.JqBetView[data-view=ing]').on('click', '.JqBetDel', function()
+	{
+		var count = parseInt($('.JqBetViewBtn[data-view=ing]').find('.JqBetViewCount').text());
+		var id = $(this).parents('.JqbetOrderBox').attr('data-id');
+
+		$(this).parents('.JqbetOrderBox').remove();
+		$('.JqBetViewBtn[data-view=ing]').find('.JqBetViewCount').text(count-1);
+		$('.JqBetBtn[data-id='+id+']').toggleClass('BgPink');
+
+		if (count-1 == 0)
+		{
+			$('.JqBetView[data-view=ing]').find('.JqBetDefault').addClass('active');
+		}
+
+	});
+
+	// 點擊籌碼
+	$('.JqBetView[data-view=ing]').on('click', '.JqChipBtn', function()
+	{
+		var nOdds = parseFloat($(this).parents('.JqbetOrderBox').find('.JqBetAmount').attr('data-odds'));
+		var nDelta = parseInt($(this).attr('data-amount'));
+		var nMoney = 0;
+		if ($(this).parents('.JqbetOrderBox').find('.JqBetAmount').val().length > 0)
+		{
+			nMoney = parseInt($(this).parents('.JqbetOrderBox').find('.JqBetAmount').val());
+		}
+
+		$(this).parents('.JqbetOrderBox').find('.JqBetAmount').val(nMoney+nDelta);
+		$(this).parents('.JqbetOrderBox').find('.JqExpectWin').text(calcExpectWin(nOdds,nMoney+nDelta));
+	});
+
+	// 點擊歸零
+	$('.JqBetView[data-view=ing]').on('click', '.JqClearMoney', function()
+	{
+		$(this).parents('.JqbetOrderBox').find('.JqBetAmount').val('');
+		$(this).parents('.JqbetOrderBox').find('.JqExpectWin').text(calcExpectWin());
+	});
+
+	// 輸入投注金額
+	$('.JqBetView[data-view=ing]').on('keyup','.JqBetAmount', function()
+	{
+		var nOdds = parseFloat($(this).parents('.JqbetOrderBox').find('.JqBetAmount').attr('data-odds'));
+		var nMoney = 0;
+		if ($(this).val().length > 0)
+		{
+			nMoney = parseInt($(this).val());
+		}
+
+		$(this).parents('.JqbetOrderBox').find('.JqExpectWin').text(calcExpectWin(nOdds,nMoney));
+	});
+
+	// 確認下注 點擊enter送出
+	var bEnter = true;
+	$('.JqBetView[data-view=ing]').on('keypress','.JqBetAmount', function(e)
+	{
+		code = (e.keyCode ? e.keyCode : e.which);
+		if(code == 13 && bEnter == true)
+		{
+			bEnter = false;
+			e.preventDefault();
+			$('.JqBetView[data-view=ing]').children('.JqbetOrderBox').find('.JqConfirmThisBet').trigger("click");
+		}
+	});
+
+	// 確認下注
+	$('.JqBetView[data-view=ing]').on('click', '.JqConfirmThisBet', function()
+	{
+		if(!bBetControl) return ;
+		bBetControl = false;
+
+		if ($('.JqBestOdds').prop('checked'))
+		{
+			$(this).closest('form').find('input[name=nBestOdds]').val('1');
+
+		}
+		else
+		{
+			$(this).closest('form').find('input[name=nBestOdds]').val('0');
+		}
+
+		$.ajax({
+			url: $('input[name=sBetJWT]').val(),
+			data: $(this).closest('form').serialize(),
+			type: "POST",
+			dataType:'json',
+			success: function (result)
+			{
+				if (result.nStatus == '1')
+				{
+					// success checktmp
+					checkTmp(result.aData['nId']);
+					$('.JqUserMoney').text(result.aData.nMoney);
+					$('.JqJumpMsgBox[data-showmsg=process]').addClass('active');
+				}
+				else
+				{
+					$('.JqJumpMsgBox[data-showmsg=0]').addClass('active');
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgContentTxt').html(result.sMsg);
+					$('.JqJumpMsgBox[data-showmsg=0]').find('.JqTitle').text(aJSDEFINE['ERRORMSG']);
+					if(result.sUrl == '')
+					{
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').addClass('JqClose');
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').attr('href','javascript:void(0)');
+						$('input[type="submit"]').prop('disabled', false);
+					}
+					else
+					{
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').attr('href',result.sUrl);
+					}
+				}
+				bBetControl = true;
+			},
+			error: function (aData)
+			{
+				console.log("err");
+			}
+		});
+	});
+
+	// 自動更新
+	let reloadSec = $('.JqRefreshSec').val();
+	let reloadSecShow = $('.JqRefreshSec').val();
+	let reloadT = setInterval(() => {
+		reloadSecShow--;
+		$($('.JqRefreshSec option:selected')[0]).text(reloadSecShow);
+		if(reloadSecShow == 0)
+		{
+			reloadSecShow = reloadSec;
+			refreshOdds();
+			indexLayout();
+		}
+	}, 1000);
+	$('.JqRefreshSec').on('change', function()
+	{
+		document.cookie = `nReloadSec=${$(this).val()}`;
+		$($('.JqRefreshSec option[value='+reloadSec+']')[0]).text(reloadSec);
+		reloadSec = $('.JqRefreshSec ').val();
+		reloadSecShow = $('.JqRefreshSec').val();
+	});
+	$('.JqRefreshBtn').on('click', function()
+	{
+		location.reload();
+	});
+
+	// 取得最新注單
+	$('.JqGetLatest').on('click', function(event)
+	{
+		$.ajax({
+			url: $('input[name=sLatestBetJWT]').val(),
+			data:
+			{
+				nId: $('.JqBetView[data-view=order]').attr('data-lastid'),
+			},
+			type: "POST",
+			dataType:'json',
+			success: function (result)
+			{
+				if (result.nStatus == '1')
+				{
+					var nLastid = 0;
+					var nCount = 0;
+					var sHtml = '';
+					var sHtmlTmp = $('.JqCopyorder').html();
+					$.each(result.aData, function(LPid, LPDetail)
+					{
+						if (nLastid == 0)
+						{
+							nLastid = LPDetail.nId;
+						}
+						nCount++;
+						sHtml+= sHtmlTmp;
+						$.each(LPDetail, function(LPsKey, LPsVal)
+						{
+							var LPreg = new RegExp('\\['+LPsKey+'\\]','g');
+							sHtml = sHtml.replace(LPreg,LPsVal);
+						});
+					});
+					// console.log(sHtml);
+					$('.JqBetView[data-view=order]').append(sHtml);
+
+					if (sHtml != '')
+					{
+						$('.JqBetView[data-view=order]').find('.JqBetDefault').removeClass('active');
+						$('.JqBetView[data-view=order]').attr('data-lastid',nLastid);
+						$('.JqLatestCount').text(nCount);
+					}
+				}
+			},
+			error: function (aData)
+			{
+				console.log("err");
+			}
+		});
+	});
+
+	$('.JqGetLatest').trigger('click');
+	$('.JqBetViewBtn[data-view=ing]').trigger('click');
+
+	// check bet tmp
+	if ($('input[name=nBetTmpId]').val() != "0")
+	{
+		$('.JqJumpMsgBox[data-showmsg=process]').addClass('active');
+		checkTmp($('input[name=nBetTmpId]').val());
+	}
+
+	// 點自動接收最佳賠率
+	$('.JqBestOdds').on('click', function(event)
+	{
+		if ($(this).prop('checked'))
+		{
+			document.cookie = `nBestOdds=${$(this).val()}`;
+		}
+		else
+		{
+			fnDeleteCookie('nBestOdds');
+		}
+	});
+
+	$('.JqgameBox').on('click', '.JqBetFalse', function(event)
+	{
+		$('.JqJumpMsgBox[data-showmsg=betfalse]').addClass('active');
+	});
+
+	$('.JqHeaderBtnBet').on('click', function()
+	{
+		$(this).toggleClass('active');
+		$('.JqBetBox').toggleClass('active');
+		$('.JqgameBox').toggleClass('layoutwid');
+	});
+
+	indexLayout();
+});
+
+function checkTmp(nId)
+{
+	let checkTmpT = setInterval(() => {
+		$.ajax({
+			url: $('input[name=sCheckTmpJWT]').val(),
+			data:
+			{
+				nId: nId,
+			},
+			type: "POST",
+			dataType:'json',
+			success: function (result)
+			{
+				if (result.nStatus != '0')
+				{
+					$('.JqJumpMsgBox[data-showmsg=process]').removeClass('active');
+					$('.JqJumpMsgBox[data-showmsg=0]').addClass('active');
+					if (result.nStatus == '1')
+					{
+						// success checktmp
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').removeClass('JqClose');
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgContentTxt').html(result.sMsg);
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').attr('href',result.sUrl);
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqIcon').removeClass('fa-times');
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqIcon').addClass('fa-check');
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqTitle').text(aJSDEFINE['RIGHTMSG']);
+					}
+
+					if (result.nStatus == '99')
+					{
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgContentTxt').html(result.sMsg);
+						$('.JqJumpMsgBox[data-showmsg=0]').find('.JqTitle').text(aJSDEFINE['ERRORMSG']);
+						if(result.sUrl == '')
+						{
+							$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').addClass('JqClose');
+							$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').attr('href','javascript:void(0)');
+							$('input[type="submit"]').prop('disabled', false);
+						}
+						else
+						{
+							$('.JqJumpMsgBox[data-showmsg=0]').find('.JqJumpMsgBtn').attr('href',result.sUrl);
+						}
+					}
+
+					clearInterval(checkTmpT);
+				}
+			},
+			error: function (aData)
+			{
+				console.log("err");
+			}
+		});
+	}, 500);
+}
+
+function refreshOdds()
+{
+	$.ajax({
+		url: $('input[name=sRefreshJWT]').val(),
+		data:
+		{
+			nRound: $('input[name=sRefreshJWT]').data('round'),
+			nFilter: $('input[name=sRefreshJWT]').data('filter'),
+		},
+		type: "POST",
+		dataType:'json',
+		success: function (result)
+		{
+			if (result.nStatus == '1')
+			{
+				if(parseInt($('.JqBetBtn').length) != parseInt(result.nCount))
+				{
+					// console.log($('.JqBetBtn').length+'<>'+result.nCount);
+					location.reload();
+					return;
+				}
+
+				$('.JqBetBtn').each(function(index, el)
+				{
+					var id = $(el).attr('data-id');
+
+					if (result.aData[id] == undefined)
+					{
+						// 查無賠率
+						$(el).addClass('JqBetFalse');
+					}
+					else
+					{
+						var oldOdds = $(el).find('.JqOddsNow').text();
+						var newOdds = result.aData[id]['sBtnOdds'];
+						var oldHdp = $(el).attr('data-hdp');
+						var newHdp = result.aData[id]['sCurrentHdp'];
+
+						$(el).removeClass('JqBetFalse');
+						// 按鈕資訊更新
+						$(el).find('.JqHdpNow').text(result.aData[id]['sCurrentHdp']);
+						$(el).attr('data-hdp',result.aData[id]['sCurrentHdp']);
+						$(el).attr('data-calcodds',result.aData[id]['sCalcOdds']);
+
+						// 投注資訊更新
+						if ($(el).hasClass('BgPink'))
+						{
+							$('.JqBetView[data-view=ing]').find('[data-id='+id+']').find('input[name=nOdds]').val(newOdds);
+							$('.JqBetView[data-view=ing]').find('[data-id='+id+']').find('input[name=sHdp]').val(newHdp);
+							// 大小需特別處理顯示
+							var betData = JSON.parse($(el).attr('data-betdata'));
+							// console.log(betData);
+
+							if (betData.sMethodCode == '00')
+							{
+								//  讓球注單分盤顯示+-要相反
+								if (newHdp.substr(0,1) == '-')
+								{
+									$('.JqBetView[data-view=ing]').find('[data-id='+id+']').find('.JqHdp').text(newHdp.substr(1));
+								}
+								else
+								{
+									$('.JqBetView[data-view=ing]').find('[data-id='+id+']').find('.JqHdp').text('-'+newHdp);
+								}
+							}
+							else if(betData.nBet == 4)
+							{
+								$('.JqBetView[data-view=ing]').find('[data-id='+id+']').find('.JqHdp').text(newHdp.substr(1));
+							}
+							else
+							{
+								$('.JqBetView[data-view=ing]').find('[data-id='+id+']').find('.JqHdp').text(newHdp);
+							}
+						}
+
+						// 閃爍變化
+						if (oldOdds < newOdds)
+						{
+							$(el).find('.JqOddsNow').text(newOdds).addClass('up JqFlashOddsUp');
+						}
+						else if (oldOdds > newOdds)
+						{
+							$(el).find('.JqOddsNow').text(newOdds).addClass('down JqFlashOddsDown');
+						}
+						else
+						{
+							$(el).find('.JqOddsNow').text(newOdds).removeClass('up down JqFlashOddsUp JqFlashOddsDown');
+						}
+
+						if ($(el).hasClass('JqMainBetBtn'))
+						{
+							$(el).find('.JqCondNow').html( result.aData[id]['sBtnText']).addClass('active JqFlashHdp');
+						}
+						else
+						{
+							$(el).find('.JqCondNow').html( result.aData[id]['sMoreBtnText']).addClass('active JqFlashHdp');
+						}
+
+						if (oldHdp != newHdp)
+						{
+							$(el).find('.JqCondNow').addClass('active JqFlashHdp');
+						}
+						else
+						{
+							$(el).find('.JqCondNow').removeClass('active JqFlashHdp');
+						}
+					}
+				});
+
+				let flashCount = 0;
+				let flashT = setInterval(() => {
+					$('.JqBody').find('.JqFlashHdp').toggleClass('active');
+					$('.JqBody').find('.JqFlashOddsUp').toggleClass('up');
+					$('.JqBody').find('.JqFlashOddsDown').toggleClass('down');
+					flashCount ++;
+					
+					if (flashCount == 6)
+					{
+						clearInterval(flashT);
+						$('.JqBody').find('.JqFlashOddsUp').removeClass('up');
+						$('.JqBody').find('.JqFlashOddsDown').removeClass('down');
+					}
+				}, 700);
+			}
+
+		},
+		error: function (aData)
+		{
+			console.log("err");
+		}
+	});
+}
+
+function calcExpectWin(nOdds = 0,nMoney = 0)
+{
+	return (nMoney * nOdds).toFixed(2);
+}
+
+function navMenuPos()
+{
+	$.each($('.JqNavGames'),function(i,menu)
+	{
+		$(menu).find('.JqNavGamesMenu').css('top',$(menu).offset().top+'px');
+	});
+}
+
+function indexLayout()
+{
+	let aTmpBk = [];
+	let aTmpLeft = [];
+	$.each($('.JqFkWid0'),function(i,bk)
+	{
+		let nCount = $(bk).attr('data-jwid');
+		aTmpBk[nCount] = 0;
+	});	
+	$.each($('.JqFkWid1'),function(i,bk)
+	{
+		if($(bk).find('.JqCondNow').outerWidth(true)<6)
+		{
+			$(bk).find('.JqCondNow').css('min-width','50px');
+		}
+		
+		let nCount = $(bk).attr('data-jwid');
+		let nSum = 0;
+		let nLeft = 0;
+		if($(bk).find('.JqCondNow').length>0 && $(bk).find('.JqOddsNow').length>0)
+		{
+			nSum += parseInt($(bk).find('.JqCondNow').outerWidth(true)) + parseInt($(bk).find('.JqOddsNow').outerWidth(true));
+			nLeft += parseInt($(bk).find('.JqCondNow').outerWidth(true));
+		}
+		else if($(bk).find('.JqCondNow').length>0)
+		{
+			nSum += parseInt($(bk).find('.JqCondNow').outerWidth(true));
+			nLeft += parseInt($(bk).find('.JqCondNow').outerWidth(true));
+		}
+		else if($(bk).find('.JqOddsNow').length>0)
+		{
+			nSum += parseInt($(bk).find('.JqOddsNow').outerWidth(true));
+		}
+		if(nSum > aTmpBk[nCount])
+		{
+			aTmpBk[nCount] = nSum;
+			aTmpLeft[nCount] = nLeft;
+		}
+	});
+
+	let nFkLength = $('.JqFkWid0').length;
+	let nSumWid=0;
+	for(nI=0;nI<nFkLength;nI++)
+	{
+		if(nI==nFkLength-1)
+		{
+			aTmpBk[nI] += 15;
+		}
+		if(nI>1)
+		{
+			if(aTmpBk[nI] < 40)
+			{
+				$('.JqFkWid0[data-jwid="'+nI+'"]').css({'max-width':'15%','min-width':'40px'});
+				$('.JqFkWid1[data-jwid="'+nI+'"]').css({'max-width':'15%','min-width':'40px'});
+			}
+			else
+			{
+				$('.JqFkWid0[data-jwid="'+nI+'"]').css({'max-width':'15%','min-width':aTmpBk[nI]+'px'});
+				$('.JqFkWid1[data-jwid="'+nI+'"]').css({'max-width':'15%','min-width':aTmpBk[nI]+'px'});
+			}
+		}
+		else
+		{
+			$('.JqFkWid0[data-jwid="'+nI+'"]').css({'max-width':'35%','min-width':aTmpBk[nI]+'px'});
+			$('.JqFkWid1[data-jwid="'+nI+'"]').css({'max-width':'35%','min-width':aTmpBk[nI]+'px'});
+		}		
+		nSumWid += aTmpBk[nI];
+
+		$('.JqFkWid1[data-jwid="'+nI+'"]').find('.JqCondNow').css('width',aTmpLeft[nI]+'px');
+	}
+	$('.JqgameBox').css('min-width',(nSumWid+500)+'px');
+}
