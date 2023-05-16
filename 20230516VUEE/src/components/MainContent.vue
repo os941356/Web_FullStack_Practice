@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <BallGameInfo
-      v-for="gameData in gameDatas || []"
+      v-for="gameData in BallGameData.allData || []"
       :key="gameData"
       :SeriesAndGames="SeriesAndGamesPost"
       :title="title"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import {
   useGameStore,
   useBallGameInfoTable,
@@ -32,33 +32,26 @@ export default {
     const BallGameData = useBallGameData();
 
     // 進入網站刷新nba;
-    axios
-      .get(
-        "https://demo801.dtap000s3.com/Project/t_ball00/EndTest/api/client_use/getFixOdds.php"
-      )
-      .then((response) => {
-        console.log(response.data);
-        gameDatas.value = response.data;
-        console.log(gameDatas.value, "開始產生");
-        oddDatas.value = gameDatas.value.aData.aOdds;
-        title.value = "NBA";
-        SeriesAndGamesPost.value = gameDatas.value.aData.aFixtures;
-        storeGameTable.aOdds = gameDatas.value.aData.aOdds;
-      });
+    axios.get("https://yuanspeed.com/aaaa.php").then((response) => {
+      console.log(response.data);
+      title.value = "NBA";
+      BallGameData.allData = response.data;
 
-    watch(
-      () => BallGameData.allData,
-      (newVal) => {
-        gameDatas.value = newVal;
-        console.log(gameDatas.value, "開始產生");
-        oddDatas.value = gameDatas.value.aData.aOdds;
-        title.value = store.chooseGameType;
-        SeriesAndGamesPost.value = gameDatas.value.aData.aFixtures;
-        storeGameTable.aOdds = gameDatas.value.aData.aOdds;
-      }
-    );
+      console.log(gameDatas.value, "開始產生");
+      oddDatas.value = BallGameData.allData.aData.aOdds;
+      title.value = "NBA";
+      SeriesAndGamesPost.value = BallGameData.allData.aData.aFixtures;
+      storeGameTable.aOdds = BallGameData.allData.aData.aOdds;
+    });
 
-    return { gameDatas, title, store, SeriesAndGamesPost, oddDatas };
+    return {
+      gameDatas,
+      title,
+      store,
+      SeriesAndGamesPost,
+      oddDatas,
+      BallGameData,
+    };
   },
 };
 </script>
