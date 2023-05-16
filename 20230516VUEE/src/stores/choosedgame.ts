@@ -28,7 +28,7 @@ export const useClickMoreInfo = defineStore("ClickMoreInfo", {
 export const usePostData = defineStore("PostData", {
   state() {
     return {
-   
+      nRound:null,
       nDayRang:null,
       nSid:null,
 

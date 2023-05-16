@@ -23,10 +23,7 @@ export default {
     };
   },
   methods: {
-    toggleBallGameInfoSeriesAndGames() {
-      this.isSeriesAndGamesHidden = !this.isSeriesAndGamesHidden;
-      console.log("父組件methods調用了");
-    },
+    toggleBallGameInfoSeriesAndGames() {},
   },
 
   props: {

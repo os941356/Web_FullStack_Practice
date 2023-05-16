@@ -57,7 +57,11 @@
 </template>
 <script>
 import ArrowPic from "./ArrowPic.vue";
-import { useBallGameInfoTable, useClickBetInfo } from "@/stores/choosedgame";
+import {
+  useBallGameInfoTable,
+  useClickBetInfo,
+  useBallGameData,
+} from "@/stores/choosedgame";
 import BallGameInfoTeams from "./BallGameInfoTeams.vue";
 import BallGameinfoMore from "./BallGameinfoMore.vue";
 import { ref, onMounted } from "vue";
@@ -89,6 +93,7 @@ export default {
       //console.log(aOdds);
     });
     const BallGameInfoTable = useBallGameInfoTable();
+
     const aOdds = BallGameInfoTable.aOdds;
     const ClickBetInfo = useClickBetInfo();
     const ishidden = ref(false);

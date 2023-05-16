@@ -24,7 +24,6 @@ export default {
   components: { BallGameInfo },
   setup() {
     const gameDatas = ref(null);
-    const oddDatas = ref(null);
     const SeriesAndGamesPost = ref(null);
     const title = ref("");
     const store = useGameStore();
@@ -32,24 +31,20 @@ export default {
     const BallGameData = useBallGameData();
 
     // 進入網站刷新nba;
-    axios.get("https://yuanspeed.com/aaaa.php").then((response) => {
-      console.log(response.data);
-      title.value = "NBA";
-      BallGameData.allData = response.data;
-
-      console.log(gameDatas.value, "開始產生");
-      oddDatas.value = BallGameData.allData.aData.aOdds;
-      title.value = "NBA";
-      SeriesAndGamesPost.value = BallGameData.allData.aData.aFixtures;
-      storeGameTable.aOdds = BallGameData.allData.aData.aOdds;
-    });
+    // axios.get("https://yuanspeed.com/aaaa.php").then((response) => {
+    //   console.log(response.data);
+    //   title.value = "NBA";
+    //   BallGameData.allData = response.data; //用pinia循環ballgameinfo
+    //   SeriesAndGamesPost.value = BallGameData.allData.aData.aFixtures;
+    //   storeGameTable.aOdds = BallGameData.allData.aData.aOdds;
+    // });
 
     return {
       gameDatas,
       title,
       store,
       SeriesAndGamesPost,
-      oddDatas,
+
       BallGameData,
     };
   },
